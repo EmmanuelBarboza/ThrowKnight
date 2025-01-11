@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://m1u7s48pnnre"]
+
+[ext_resource type="PackedScene" uid="uid://da83m0hii4cb4" path="res://Scenes/Weapons/weapon.tscn" id="1_aldf2"]
+[ext_resource type="Script" path="res://Scripts/sword.gd" id="2_2erlt"]
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_d7f16"]
+[ext_resource type="PackedScene" uid="uid://66kc8ccsthbs" path="res://Scenes/Weapons/sword_projectile.tscn" id="3_l5noe"]
+
+[node name="Sword" instance=ExtResource("1_aldf2")]
+script = ExtResource("2_2erlt")
+projectile = ExtResource("3_l5noe")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_d7f16")
+region_rect = Rect2(148, 34, 8, 29)

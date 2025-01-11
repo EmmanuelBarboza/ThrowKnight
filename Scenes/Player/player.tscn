@@ -1,0 +1,121 @@
+[gd_scene load_steps=17 format=3 uid="uid://bnswwskvoqdpc"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_yyaoo"]
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_3riy8"]
+[ext_resource type="PackedScene" uid="uid://m1u7s48pnnre" path="res://Scenes/Weapons/sword.tscn" id="3_61x4q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfrfn"]
+atlas = ExtResource("2_3riy8")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajs77"]
+atlas = ExtResource("2_3riy8")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmn3d"]
+atlas = ExtResource("2_3riy8")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrl1w"]
+atlas = ExtResource("2_3riy8")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtjnm"]
+atlas = ExtResource("2_3riy8")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6gym"]
+atlas = ExtResource("2_3riy8")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_earbs"]
+atlas = ExtResource("2_3riy8")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60umy"]
+atlas = ExtResource("2_3riy8")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f5kne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfrfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajs77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmn3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrl1w")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtjnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6gym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_earbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60umy")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lreet"]
+radius = 5.0
+
+[sub_resource type="Animation" id="Animation_vqxny"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_3qdmd"]
+resource_name = "run"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gm4vv"]
+_data = {
+"idle": SubResource("Animation_vqxny"),
+"run": SubResource("Animation_3qdmd")
+}
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+script = ExtResource("1_yyaoo")
+weapon = NodePath("Sword")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_f5kne")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.584741
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13)
+shape = SubResource("CircleShape2D_lreet")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.925, 2.925)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -17.0
+offset_top = -38.0
+offset_right = 23.0
+offset_bottom = -15.0
+text = "DEBUG"
+
+[node name="Sword" parent="." instance=ExtResource("3_61x4q")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gm4vv")
+}

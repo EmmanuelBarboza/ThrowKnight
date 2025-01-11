@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdd1g7bcqxxq7"]
+
+[ext_resource type="Script" path="res://Test/weapon_test.gd" id="1_751sv"]
+[ext_resource type="Texture2D" uid="uid://bfaa3hqncjmbr" path="res://Assets/items.png" id="2_kch27"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_751sv")
+
+[node name="WeaponFunc" type="Node2D" parent="."]
+position = Vector2(20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponFunc"]
+rotation = 0.785398
+texture = ExtResource("2_kch27")
+region_enabled = true
+region_rect = Rect2(32, 96, 32, 32)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(29, 0)
