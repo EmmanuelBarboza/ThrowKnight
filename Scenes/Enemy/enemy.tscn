@@ -1,68 +1,45 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhfnfgd0h8csx"]
+[gd_scene load_steps=5 format=3 uid="uid://dhfnfgd0h8csx"]
 
-[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="1_34ejl"]
 [ext_resource type="Script" path="res://Scenes/Enemy/enemy.gd" id="1_k0i7i"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_me7vh"]
-atlas = ExtResource("1_34ejl")
-region = Rect2(271, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cndyo"]
-atlas = ExtResource("1_34ejl")
-region = Rect2(303, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_88hra"]
-atlas = ExtResource("1_34ejl")
-region = Rect2(335, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ywwf7"]
-atlas = ExtResource("1_34ejl")
-region = Rect2(367, 0, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_rvjd0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_me7vh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cndyo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_88hra")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ywwf7")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
+animations = []
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_183it"]
-radius = 11.1803
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_stlng"]
+radius = 15.0
+height = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ec3s0"]
+radius = 21.6667
 
 [node name="Enemy" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 2
+collision_mask = 17
 script = ExtResource("1_k0i7i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -20)
 sprite_frames = SubResource("SpriteFrames_rvjd0")
-autoplay = "default"
-frame_progress = 0.347491
+animation = &""
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(1, 0)
-shape = SubResource("CircleShape2D_183it")
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_stlng")
 debug_color = Color(0.54907, 0.563255, 0.0798082, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 7)
+position = Vector2(0, 8)
 scale = Vector2(0.599998, 0.548387)
 shape = SubResource("CircleShape2D_ec3s0")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "DEBUG"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

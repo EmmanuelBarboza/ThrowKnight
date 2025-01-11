@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_yyaoo"]
 [ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_3riy8"]
-[ext_resource type="PackedScene" uid="uid://m1u7s48pnnre" path="res://Scenes/Weapons/sword.tscn" id="3_61x4q"]
+[ext_resource type="PackedScene" uid="uid://c1sjfbpljb4si" path="res://Scenes/Weapons/axe.tscn" id="3_g83hi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfrfn"]
 atlas = ExtResource("2_3riy8")
@@ -74,7 +74,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lreet"]
-radius = 5.0
+radius = 7.0
 
 [sub_resource type="Animation" id="Animation_vqxny"]
 resource_name = "idle"
@@ -88,9 +88,11 @@ _data = {
 "run": SubResource("Animation_3qdmd")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon") groups=["Player"]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_yyaoo")
-weapon = NodePath("Sword")
+weapon = NodePath("Axe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -113,9 +115,10 @@ offset_right = 23.0
 offset_bottom = -15.0
 text = "DEBUG"
 
-[node name="Sword" parent="." instance=ExtResource("3_61x4q")]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_gm4vv")
 }
+
+[node name="Axe" parent="." instance=ExtResource("3_g83hi")]
+position = Vector2(0, 6)
