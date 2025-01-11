@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dhfnfgd0h8csx"]
 
-[ext_resource type="Script" path="res://Scenes/Enemy/enemy.gd" id="1_k0i7i"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_k0i7i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rvjd0"]
 animations = []
@@ -38,6 +38,7 @@ scale = Vector2(0.599998, 0.548387)
 shape = SubResource("CircleShape2D_ec3s0")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "DEBUG"
