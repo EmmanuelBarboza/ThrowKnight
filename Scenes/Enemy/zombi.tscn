@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://by44o0a1p3l0b"]
+[gd_scene load_steps=9 format=3 uid="uid://by44o0a1p3l0b"]
 
 [ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_0te8x"]
 [ext_resource type="Texture2D" uid="uid://gnapavotafr8" path="res://Assets/other/ZombieBoss.png" id="2_0p6cy"]
+[ext_resource type="PackedScene" uid="uid://y0xlwsnk7swm" path="res://Scenes/Entity/hurtbox.tscn" id="3_aqf3l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yr4ky"]
 atlas = ExtResource("2_0p6cy")
@@ -40,8 +41,13 @@ animations = [{
 }]
 
 [node name="Zombi" instance=ExtResource("1_0te8x")]
+move_speed = 100
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_wk1iv")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("3_aqf3l")]
+collision_layer = 32
+collision_mask = 0

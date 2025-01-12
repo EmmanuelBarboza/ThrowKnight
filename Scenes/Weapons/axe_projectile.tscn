@@ -14,7 +14,3 @@ z_index = 1
 texture = ExtResource("3_bo2g1")
 region_enabled = true
 region_rect = Rect2(144, 103, 16, 24)
-
-[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
-position = Vector2(0, 1)
-scale = Vector2(2.47, 1.9)

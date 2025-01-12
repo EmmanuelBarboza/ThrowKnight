@@ -10,5 +10,6 @@ weapon_speed = 1000.0
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_yoc6i")
+offset = Vector2(0, -4)
 region_enabled = true
 region_rect = Rect2(148, 34, 8, 29)

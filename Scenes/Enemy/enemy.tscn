@@ -1,13 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dhfnfgd0h8csx"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_k0i7i"]
+[ext_resource type="PackedScene" uid="uid://cvp3k4pb4jvey" path="res://Scenes/Entity/hitbox.tscn" id="2_mcea3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rvjd0"]
-animations = []
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_stlng"]
-radius = 15.0
-height = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ec3s0"]
 radius = 21.6667
@@ -21,16 +17,8 @@ script = ExtResource("1_k0i7i")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -20)
 sprite_frames = SubResource("SpriteFrames_rvjd0")
-animation = &""
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -8)
-shape = SubResource("CapsuleShape2D_stlng")
-debug_color = Color(0.54907, 0.563255, 0.0798082, 0.42)
+[node name="Hitbox" parent="." instance=ExtResource("2_mcea3")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)

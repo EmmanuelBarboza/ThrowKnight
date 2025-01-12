@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnswwskvoqdpc"]
+[gd_scene load_steps=18 format=3 uid="uid://bnswwskvoqdpc"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_yyaoo"]
 [ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_3riy8"]
 [ext_resource type="PackedScene" uid="uid://m1u7s48pnnre" path="res://Scenes/Weapons/sword.tscn" id="3_61x4q"]
+[ext_resource type="PackedScene" uid="uid://cvp3k4pb4jvey" path="res://Scenes/Entity/hitbox.tscn" id="4_a6xjd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfrfn"]
 atlas = ExtResource("2_3riy8")
@@ -122,3 +123,13 @@ libraries = {
 }
 
 [node name="Sword" parent="." instance=ExtResource("3_61x4q")]
+
+[node name="Hitbox" parent="." instance=ExtResource("4_a6xjd")]
+collision_mask = 32
+
+[node name="CollisionShape2D2" parent="Hitbox" index="0"]
+position = Vector2(0, 2)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+
+[editable path="Hitbox"]
