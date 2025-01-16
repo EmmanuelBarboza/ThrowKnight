@@ -8,6 +8,7 @@
 [node name="Axe" instance=ExtResource("1_j4ong")]
 script = ExtResource("2_ao7ua")
 projectile = ExtResource("3_e6axe")
+weapon_rotate_speed = 3.0
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("4_adbqj")

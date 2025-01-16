@@ -2,6 +2,7 @@ class_name Enemy
 extends Entity
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
+
 @onready var label: Label = $Label
 
 var tolerance: float = 0.6
@@ -40,7 +41,7 @@ func flip_sprite() -> void:
 
 func follow_player() -> void:
 	velocity = Vector2.ZERO
-	#Obtenemos la direccion en la que se encuentra el jugador
+	
 	
 	#Hacemos que la velocidad vaya hacia el jugador multiplicado con la velocidad
 	if get_player_distance() < follow_radius:
@@ -50,12 +51,16 @@ func follow_player() -> void:
 		velocity = Vector2.ZERO
 
 func get_player_direction() -> Vector2:
+	#Obtenemos la direccion en la que se encuentra el jugador
 	if player != null:
 		return (player.position - position).normalized()
 	return Vector2.ZERO
 
 func get_player_distance() -> float:
-	return position.distance_to(player.position)
+	#Returns the distance to the player
+	if player != null:
+		return position.distance_to(player.position)
+	return 0.0
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	#Para cuando un proyectil toque la hitbox del enemigo

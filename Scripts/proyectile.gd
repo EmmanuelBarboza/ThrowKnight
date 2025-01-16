@@ -5,6 +5,8 @@ extends Area2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+@export var spins: bool = true
+
 @export_group("Velocities")
 #Velocidad con la que viaja el proyectil
 @export var weapon_speed: float = 800
@@ -15,10 +17,12 @@ extends Area2D
 @export var base_damage: float = 100 
 
 func movement(delta: float) -> void:
-	#Rotacion del sprite
-	sprite_2d.rotation_degrees += weapon_speed * delta
-	#Evita que el angulo de rotacion supere los 360 grados
-	sprite_2d.rotation_degrees = wrap(sprite_2d.rotation_degrees,0 , 360)
+	if spins:
+		#Rotacion del sprite
+		sprite_2d.rotation_degrees += weapon_speed * delta
+		#Evita que el angulo de rotacion supere los 360 grados
+		sprite_2d.rotation_degrees = wrap(sprite_2d.rotation_degrees,0 , 360)
+
 	#Hace que se mueva el proyectil en linea recta
 	global_position += transform.x * spin_speed * delta
 

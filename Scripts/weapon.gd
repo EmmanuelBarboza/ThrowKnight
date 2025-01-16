@@ -2,6 +2,8 @@ class_name Weapon
 extends Node2D
 
 #Esta clase es una plantilla para el resto de armas si es que implemento mas
+
+
 @onready var marker: Marker2D = $Marker2D
 #Timer para impedir que se spamee el arma
 @onready var shooting_delay_timer: Timer = $ShootingDelayTimer
@@ -10,7 +12,9 @@ extends Node2D
 @export var projectile: PackedScene
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var throw_sound: AudioStreamPlayer2D = $ThrowSound
 
+@export var weapon_rotate_speed: float = 10
 
 func _ready() -> void:
 	animation_player.play("RESET")
@@ -39,7 +43,7 @@ func weapon_movement(delta: float) -> void:
 	var target_rotation = (get_global_mouse_position() - global_position).angle()
 	
 	# Interpola suavemente hacia el ángulo objetivo
-	rotation = lerp_angle(rotation, target_rotation, 25 * delta)
+	rotation = lerp_angle(rotation, target_rotation, weapon_rotate_speed * delta)
 	
 	# Normaliza el ángulo en grados
 	var degrees = rad_to_deg(rotation)
@@ -53,9 +57,11 @@ func weapon_movement(delta: float) -> void:
 
 
 func shooting_logic() -> void:
-	if Input.is_action_just_released("shoot") and not shooting_delay_timer.time_left:
+	if Input.is_action_just_pressed("shoot") and not shooting_delay_timer.time_left:
 		animation_player.play("shoot")
 
+func play_sound() -> void:
+	throw_sound.play()
 
 func shoot() -> void:
 		var new_proyectile: Projectile = get_weapon_projectile().instantiate()

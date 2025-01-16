@@ -1,8 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://by44o0a1p3l0b"]
+[gd_scene load_steps=19 format=3 uid="uid://by44o0a1p3l0b"]
 
 [ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_0te8x"]
 [ext_resource type="Texture2D" uid="uid://gnapavotafr8" path="res://Assets/other/ZombieBoss.png" id="2_0p6cy"]
+[ext_resource type="Script" path="res://Scripts/zombi.gd" id="2_ppyd7"]
 [ext_resource type="PackedScene" uid="uid://y0xlwsnk7swm" path="res://Scenes/Entity/hurtbox.tscn" id="3_aqf3l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf3ix"]
+atlas = ExtResource("2_0p6cy")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8qat"]
+atlas = ExtResource("2_0p6cy")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv64g"]
+atlas = ExtResource("2_0p6cy")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_766h8"]
+atlas = ExtResource("2_0p6cy")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvlrb"]
+atlas = ExtResource("2_0p6cy")
+region = Rect2(0, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yr4ky"]
 atlas = ExtResource("2_0p6cy")
@@ -20,8 +41,44 @@ region = Rect2(128, 0, 64, 64)
 atlas = ExtResource("2_0p6cy")
 region = Rect2(192, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceb5a"]
+atlas = ExtResource("2_0p6cy")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwvw8"]
+atlas = ExtResource("2_0p6cy")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej1qc"]
+atlas = ExtResource("2_0p6cy")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg57b"]
+atlas = ExtResource("2_0p6cy")
+region = Rect2(192, 64, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wk1iv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf3ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8qat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv64g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_766h8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvlrb")
+}],
+"loop": false,
+"name": &"attack_simple",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yr4ky")
@@ -38,15 +95,35 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ceb5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwvw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej1qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yg57b")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
 }]
 
 [node name="Zombi" instance=ExtResource("1_0te8x")]
-move_speed = 100
+script = ExtResource("2_ppyd7")
+follow_radius = 1200.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_wk1iv")
 animation = &"idle"
 autoplay = "idle"
+frame = 1
+frame_progress = 0.702008
 
 [node name="Hurtbox" parent="." index="4" instance=ExtResource("3_aqf3l")]
 collision_layer = 32

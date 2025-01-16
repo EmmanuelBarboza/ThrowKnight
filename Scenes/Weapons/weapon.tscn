@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://da83m0hii4cb4"]
+[gd_scene load_steps=7 format=3 uid="uid://da83m0hii4cb4"]
 
 [ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_r62jb"]
+[ext_resource type="AudioStream" uid="uid://c12m4yjr6vkxr" path="res://Assets/sounds/mixkit-throw-hard-wind-woosh-1488 (online-audio-converter.com).mp3" id="2_c50cu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kbwxw"]
 
@@ -54,9 +55,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.384492),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.194289, 0.384492),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"play_sound"
+}, {
 "args": [],
 "method": &"shoot"
 }]
@@ -84,6 +88,7 @@ _data = {
 script = ExtResource("1_r62jb")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 0
 
@@ -110,3 +115,7 @@ libraries = {
 "": SubResource("AnimationLibrary_d8w62")
 }
 autoplay = "RESET"
+
+[node name="ThrowSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_c50cu")
+volume_db = -12.0

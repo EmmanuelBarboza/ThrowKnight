@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkhmf12ap6kjb"]
+
+[ext_resource type="PackedScene" uid="uid://do05fijf8kho1" path="res://Scenes/Weapons/projectile.tscn" id="1_r64hl"]
+[ext_resource type="Texture2D" uid="uid://cfqdice4j2uqq" path="res://Assets/other/AcidBall.png" id="2_ajqe3"]
+
+[node name="ZombieAcid" instance=ExtResource("1_r64hl")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_ajqe3")
+offset = Vector2(0, 4)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c12m4yjr6vkxr"
+path="res://.godot/imported/mixkit-throw-hard-wind-woosh-1488 (online-audio-converter.com).mp3-ca8e8be833b5955c9e0efb1681a88cfa.mp3str"
+
+[deps]
+
+source_file="res://Assets/sounds/mixkit-throw-hard-wind-woosh-1488 (online-audio-converter.com).mp3"
+dest_files=["res://.godot/imported/mixkit-throw-hard-wind-woosh-1488 (online-audio-converter.com).mp3-ca8e8be833b5955c9e0efb1681a88cfa.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

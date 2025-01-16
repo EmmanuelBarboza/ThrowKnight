@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_yyaoo"]
 [ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_3riy8"]
-[ext_resource type="PackedScene" uid="uid://m1u7s48pnnre" path="res://Scenes/Weapons/sword.tscn" id="3_61x4q"]
 [ext_resource type="PackedScene" uid="uid://cvp3k4pb4jvey" path="res://Scenes/Entity/hitbox.tscn" id="4_a6xjd"]
+[ext_resource type="PackedScene" uid="uid://c1sjfbpljb4si" path="res://Scenes/Weapons/axe.tscn" id="4_d8522"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfrfn"]
 atlas = ExtResource("2_3riy8")
@@ -93,14 +93,14 @@ _data = {
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_yyaoo")
-weapon = NodePath("Sword")
+weapon = NodePath("Axe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_f5kne")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.584741
+frame_progress = 0.113718
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13)
@@ -122,13 +122,13 @@ libraries = {
 "": SubResource("AnimationLibrary_gm4vv")
 }
 
-[node name="Sword" parent="." instance=ExtResource("3_61x4q")]
-
 [node name="Hitbox" parent="." instance=ExtResource("4_a6xjd")]
 collision_mask = 32
 
 [node name="CollisionShape2D2" parent="Hitbox" index="0"]
 position = Vector2(0, 2)
+
+[node name="Axe" parent="." instance=ExtResource("4_d8522")]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 
