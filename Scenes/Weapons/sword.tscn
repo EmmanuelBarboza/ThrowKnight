@@ -12,3 +12,6 @@ projectile = ExtResource("3_l5noe")
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_d7f16")
 region_rect = Rect2(148, 34, 8, 29)
+
+[node name="ShootingDelayTimer" parent="." index="3"]
+wait_time = 0.3

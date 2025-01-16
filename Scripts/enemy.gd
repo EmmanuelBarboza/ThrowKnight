@@ -26,10 +26,16 @@ func movement() -> void:
 	
 	target_direction= get_player_direction()
 	
+	
+	
 	follow_player()
 	flip_sprite()
 	
 
+func get_player_angle() -> float:
+	if player != null:
+		return (player.position - position).angle()
+	return 0.0
 
 func flip_sprite() -> void:
 	#Giramos el sprite dependiendo de a donde se mueva
@@ -64,6 +70,6 @@ func get_player_distance() -> float:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	#Para cuando un proyectil toque la hitbox del enemigo
-	if area is Projectile:
+	if area is Projectile and area.is_in_group("player_projectile"):
 		area.queue_free()
 		take_damage(area.base_damage)

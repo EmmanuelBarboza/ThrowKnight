@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkhmf12ap6kjb"]
+[gd_scene load_steps=4 format=3 uid="uid://bkhmf12ap6kjb"]
 
 [ext_resource type="PackedScene" uid="uid://do05fijf8kho1" path="res://Scenes/Weapons/projectile.tscn" id="1_r64hl"]
 [ext_resource type="Texture2D" uid="uid://cfqdice4j2uqq" path="res://Assets/other/AcidBall.png" id="2_ajqe3"]
+[ext_resource type="Script" path="res://Scripts/zombie_acid.gd" id="2_r10jm"]
 
-[node name="ZombieAcid" instance=ExtResource("1_r64hl")]
+[node name="ZombieAcid" groups=["enemy_projectile"] instance=ExtResource("1_r64hl")]
+script = ExtResource("2_r10jm")
+spins = false
 
 [node name="Sprite2D" parent="." index="1"]
+rotation = 1.5708
 texture = ExtResource("2_ajqe3")
 offset = Vector2(0, 4)

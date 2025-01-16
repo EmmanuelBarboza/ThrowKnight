@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://c7a3rfuhqel45"]
+[gd_scene load_steps=9 format=4 uid="uid://c7a3rfuhqel45"]
 
 [ext_resource type="Texture2D" uid="uid://culwywj0kj3j7" path="res://Assets/tiles.png" id="2_sblfv"]
 [ext_resource type="Texture2D" uid="uid://dx6u044au3uw5" path="res://Assets/other/Tileset-export.png" id="3_6k8em"]
 [ext_resource type="PackedScene" uid="uid://bnswwskvoqdpc" path="res://Scenes/Player/player.tscn" id="3_6u3pn"]
-[ext_resource type="PackedScene" uid="uid://by44o0a1p3l0b" path="res://Scenes/Enemy/zombi.tscn" id="4_lom00"]
+[ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="5_8edyj"]
+[ext_resource type="AudioStream" uid="uid://n7f0hmkyqd7i" path="res://Assets/sounds/Dark Boss.mp3" id="5_wryom"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vmb7f"]
 texture = ExtResource("2_sblfv")
@@ -605,5 +606,13 @@ tile_set = SubResource("TileSet_pai2b")
 [node name="Player" parent="." instance=ExtResource("3_6u3pn")]
 position = Vector2(1, 837)
 
-[node name="Zombi" parent="." instance=ExtResource("4_lom00")]
-position = Vector2(-18, 655)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -100
+rotation = 0.00153287
+scale = Vector2(1000, 1000)
+texture = ExtResource("5_8edyj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_wryom")
+volume_db = -3.014
+autoplay = true

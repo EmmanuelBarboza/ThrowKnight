@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drqco10eo876w"
+path="res://.godot/imported/Running Retro.mp3-bc7ed17ecb9754a5a502d475be70237c.mp3str"
+
+[deps]
+
+source_file="res://Assets/sounds/Running Retro.mp3"
+dest_files=["res://.godot/imported/Running Retro.mp3-bc7ed17ecb9754a5a502d475be70237c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

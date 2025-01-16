@@ -59,3 +59,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is Hurtbox:
 		print("ouch player")
 		take_damage(100)
+	
+	if area is Projectile and area.is_in_group("enemy_projectile"):
+		take_damage(100)
+	
