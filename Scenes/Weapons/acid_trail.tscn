@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnelrif8cjxpr"]
+
+[ext_resource type="PackedScene" uid="uid://do05fijf8kho1" path="res://Scenes/Weapons/projectile.tscn" id="1_msevw"]
+[ext_resource type="Script" path="res://Scripts/acid_floor.gd" id="2_bm1ec"]
+[ext_resource type="Texture2D" uid="uid://cfqdice4j2uqq" path="res://Assets/other/AcidBall.png" id="3_xxb83"]
+
+[node name="acid_trail" instance=ExtResource("1_msevw")]
+priority = 1
+script = ExtResource("2_bm1ec")
+speed_mult = 100.0
+
+[node name="Sprite2D" parent="." index="1"]
+rotation = 1.5708
+texture = ExtResource("3_xxb83")
+
+[node name="DelaySpawnTimer" type="Timer" parent="." index="3"]
+wait_time = 0.9
+autostart = true
+
+[connection signal="timeout" from="DelaySpawnTimer" to="." method="_on_timer_timeout"]

@@ -1,6 +1,9 @@
 class_name Enemy
 extends Entity
 
+@onready var health_bar: Control = $HealthBar
+
+
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
 
 @onready var label: Label = $Label
@@ -14,7 +17,7 @@ var target_direction: Vector2
 @export var attack_radius: float = 25.0
 
 func _ready() -> void:
-	pass
+	health_bar.setup(health)
 
 func _process(_delta: float) -> void:
 	movement()
@@ -50,11 +53,16 @@ func follow_player() -> void:
 	
 	
 	#Hacemos que la velocidad vaya hacia el jugador multiplicado con la velocidad
-	if get_player_distance() < follow_radius:
+	if is_on_follow_radius():
 		velocity = target_direction  * move_speed
 	
 	if get_player_distance() < attack_radius:
 		velocity = Vector2.ZERO
+
+func is_on_follow_radius() -> bool:
+	if get_player_distance() < follow_radius:
+		return true
+	return false
 
 func get_player_direction() -> Vector2:
 	#Obtenemos la direccion en la que se encuentra el jugador
@@ -73,3 +81,6 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is Projectile and area.is_in_group("player_projectile"):
 		area.queue_free()
 		take_damage(area.base_damage)
+
+func update_ui(_health: float) -> void:
+	health_bar.update_health(_health)

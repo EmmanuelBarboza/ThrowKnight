@@ -9,6 +9,7 @@ rotation = -0.000364495
 script = ExtResource("2_hemb6")
 speed_mult = 200.0
 spin_speed = 700.0
+base_damage = 500.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 z_index = 1

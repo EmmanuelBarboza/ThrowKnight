@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnswwskvoqdpc"]
+[gd_scene load_steps=19 format=3 uid="uid://bnswwskvoqdpc"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_yyaoo"]
 [ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_3riy8"]
+[ext_resource type="PackedScene" uid="uid://m1u7s48pnnre" path="res://Scenes/Weapons/sword.tscn" id="4_46esf"]
 [ext_resource type="PackedScene" uid="uid://cvp3k4pb4jvey" path="res://Scenes/Entity/hitbox.tscn" id="4_a6xjd"]
-[ext_resource type="PackedScene" uid="uid://c1sjfbpljb4si" path="res://Scenes/Weapons/axe.tscn" id="4_d8522"]
+[ext_resource type="PackedScene" uid="uid://cv3uase56yslq" path="res://Scenes/UI/ui.tscn" id="5_100vr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfrfn"]
 atlas = ExtResource("2_3riy8")
@@ -93,25 +94,25 @@ _data = {
 collision_layer = 2
 collision_mask = 19
 script = ExtResource("1_yyaoo")
-weapon = NodePath("Axe")
+weapon = NodePath("Sword")
 move_speed = 150
+health = 2000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_f5kne")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.113718
+frame_progress = 0.798306
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13)
 shape = SubResource("CircleShape2D_lreet")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.925, 2.925)
+zoom = Vector2(1.79, 1.79)
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_left = -17.0
 offset_top = -38.0
 offset_right = 23.0
@@ -129,7 +130,11 @@ collision_mask = 48
 [node name="CollisionShape2D2" parent="Hitbox" index="0"]
 position = Vector2(0, 2)
 
-[node name="Axe" parent="." instance=ExtResource("4_d8522")]
+[node name="Sword" parent="." instance=ExtResource("4_46esf")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("5_100vr")]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 

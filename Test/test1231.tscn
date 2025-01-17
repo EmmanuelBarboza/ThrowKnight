@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7e2k02jr4hx2"]
+
+[ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_3q8du"]
+[ext_resource type="Script" path="res://Test/test_1231.gd" id="2_6r4et"]
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="3_iw1cj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kojed"]
+atlas = ExtResource("3_iw1cj")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u3qo"]
+atlas = ExtResource("3_iw1cj")
+region = Rect2(32, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16jxn"]
+atlas = ExtResource("3_iw1cj")
+region = Rect2(64, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x01mi"]
+atlas = ExtResource("3_iw1cj")
+region = Rect2(96, 256, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abuf8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kojed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0u3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16jxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x01mi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="TEST" instance=ExtResource("1_3q8du")]
+script = ExtResource("2_6r4et")
+follow_radius = 500.0
+move_speed = 10
+health = 1.0
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_abuf8")
+animation = &"idle"
+frame_progress = 0.189855

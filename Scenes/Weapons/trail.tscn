@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://gp3wobuo4me8"]
+
+[ext_resource type="Script" path="res://Scripts/trail.gd" id="1_8dkpt"]
+[ext_resource type="Texture2D" uid="uid://beklku05s2243" path="res://Assets/other/acid_texture.png" id="1_fxvos"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mv7be"]
+radius = 29.5169
+
+[node name="trail" type="Area2D" groups=["enemy_projectile"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_8dkpt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mv7be")
+debug_color = Color(0.671379, 0.508571, 0, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_fxvos")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

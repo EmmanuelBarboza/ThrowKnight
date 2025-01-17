@@ -1,3 +1,4 @@
+#Weapon.gd
 class_name Weapon
 extends Node2D
 

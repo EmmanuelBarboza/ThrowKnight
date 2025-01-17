@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhfnfgd0h8csx"]
+[gd_scene load_steps=6 format=3 uid="uid://dhfnfgd0h8csx"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_k0i7i"]
 [ext_resource type="PackedScene" uid="uid://cvp3k4pb4jvey" path="res://Scenes/Entity/hitbox.tscn" id="2_mcea3"]
+[ext_resource type="PackedScene" uid="uid://b6gworptkrewx" path="res://Scenes/Entity/health_bar.tscn" id="3_7h0kw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rvjd0"]
 
@@ -31,5 +32,7 @@ visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "DEBUG"
+
+[node name="HealthBar" parent="." instance=ExtResource("3_7h0kw")]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
