@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://gp3wobuo4me8"]
+[gd_scene load_steps=7 format=3 uid="uid://gp3wobuo4me8"]
 
 [ext_resource type="Script" path="res://Scripts/trail.gd" id="1_8dkpt"]
 [ext_resource type="Texture2D" uid="uid://beklku05s2243" path="res://Assets/other/acid_texture.png" id="1_fxvos"]
@@ -6,7 +6,59 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_mv7be"]
 radius = 29.5169
 
+[sub_resource type="Animation" id="Animation_ouhqs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u0648"]
+resource_name = "despawn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x23uq"]
+_data = {
+"RESET": SubResource("Animation_ouhqs"),
+"despawn": SubResource("Animation_u0648")
+}
+
 [node name="trail" type="Area2D" groups=["enemy_projectile"]]
+z_index = 1
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_8dkpt")
@@ -22,5 +74,10 @@ texture = ExtResource("1_fxvos")
 [node name="DespawnTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x23uq")
+}
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

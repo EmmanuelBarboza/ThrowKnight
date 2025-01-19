@@ -6,8 +6,9 @@
 
 [node name="AcidBall" groups=["enemy_projectile"] instance=ExtResource("1_5d2ks")]
 script = ExtResource("2_8eke4")
-spins = false
 speed_mult = 300.0
+spins = false
+ammount_bounces = 1
 
 [node name="Sprite2D" parent="." index="1"]
 rotation = 1.5708

@@ -10,11 +10,11 @@ config_version=5
 
 [application]
 
-config/name="NoName"
-run/main_scene="res://Scenes/Level/level.tscn"
+config/name="ThrowKnight"
+run/main_scene="res://Scenes/UI/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 run/max_fps=144
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [autoload]
 
@@ -23,13 +23,17 @@ GameManager="*res://autoloads/Game_manager.gd"
 
 [display]
 
+window/size/mode=1
+window/size/resizable=false
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [global_group]
 
 Player=""
 enemy_projectile=""
 player_projectile=""
+Obstacles=""
 
 [input]
 

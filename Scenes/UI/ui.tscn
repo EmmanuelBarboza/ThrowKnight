@@ -27,5 +27,6 @@ grow_vertical = 0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-text = "CONTROLS: E - SWAP WEAPON ;  WASD - MOVE "
+text = "CONTROLS: E - SWAP WEAPON ;  WASD - MOVE ; RIGHT CLICK - THROW
+"
 label_settings = SubResource("LabelSettings_x2205")

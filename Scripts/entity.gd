@@ -11,15 +11,23 @@ extends CharacterBody2D
 @export var move_speed = 200
 
 @export_group("Health")
+@export var max_health : float = 1000
+
 #Health of the entity, it uses  a set to check if hp is less or equal to 0, if so, the entity dies
-@export var health: float = 500:
+var health: float = 1000:
 	set(value):
 		health = value
 		if health <= 0:
 			die()
+		update_ui(health)
 
 @export_group("Sounds")
 @export var hit_sound: AudioStreamPlayer2D 
+
+func _ready() -> void:
+	
+	health = max_health
+	print(self, "MAX_HP: ", max_health, "Normal: ", health)
 
 #Visual effect when getting hit, stretches the entity sprite then turns it to normal
 var squash_and_stretch := 1.0:
@@ -36,14 +44,24 @@ func take_damage(damage: float) -> void:
 	
 	do_squash_and_stretch(1.4,0.08)
 	health -= damage
-	update_ui(health)
+	
+
+func heal(heal_ammount: float) -> void:
+	
+	health = minf(health + heal_ammount, max_health)
+	print(health)
 
 func update_ui(_health: float) -> void:
+	pass
+
+func emit_die_signal() -> void:
 	pass
 
 #Function that sets the process to falses and queue frees the entity
 func die() -> void:
 	#En caso de que muera el enemigo se para el process y se libera el nodo
+	if self is Enemy:
+		GameManager.change_main_scene()
 	set_process(false)
 	queue_free()
 

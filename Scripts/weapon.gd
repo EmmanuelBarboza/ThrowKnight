@@ -68,6 +68,6 @@ func shoot() -> void:
 		var new_proyectile: Projectile = get_weapon_projectile().instantiate()
 		new_proyectile.global_position = get_shooting_marker().global_position
 		new_proyectile.rotation = rotation
-		get_tree().root.add_child(new_proyectile)
+		GameManager.spawn_projectile(new_proyectile)
 		shooting_delay_timer.start()
 		animation_player.play("RESET")

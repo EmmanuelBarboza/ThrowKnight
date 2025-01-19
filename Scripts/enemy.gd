@@ -8,7 +8,7 @@ extends Entity
 
 @onready var label: Label = $Label
 
-var tolerance: float = 0.6
+var tolerance: float = 0.0
 
 var target_direction: Vector2
 
@@ -16,8 +16,16 @@ var target_direction: Vector2
 
 @export var attack_radius: float = 25.0
 
+@export_group("Phase tresholds")
+@export var phase_1_treshold: float
+@export var phase_2_treshold: float
+@export var phase_3_treshold: float
+
 func _ready() -> void:
-	health_bar.setup(health)
+	health = max_health
+	health_bar.setup(max_health)
+	print("done")
+
 
 func _process(_delta: float) -> void:
 	movement()
@@ -29,7 +37,8 @@ func movement() -> void:
 	
 	target_direction= get_player_direction()
 	
-	
+	if  velocity != Vector2.ZERO:
+		animated_sprite.play("run")
 	
 	follow_player()
 	flip_sprite()

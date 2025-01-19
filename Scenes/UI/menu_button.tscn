@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://djuhlk681gky5"]
+
+[ext_resource type="Texture2D" uid="uid://c6dgumywg6fai" path="res://Assets/other/button_texture.png" id="1_w1t44"]
+[ext_resource type="Script" path="res://Scripts/menu_button.gd" id="2_p8bmr"]
+[ext_resource type="FontFile" uid="uid://b42c8dlyf8m0f" path="res://Assets/fonts/gemunu-libre-v8-latin-700.ttf" id="2_uwc6x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v20le"]
+font = ExtResource("2_uwc6x")
+font_size = 24
+
+[node name="MenuButton" type="TextureButton"]
+texture_normal = ExtResource("1_w1t44")
+script = ExtResource("2_p8bmr")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+label_settings = SubResource("LabelSettings_v20le")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

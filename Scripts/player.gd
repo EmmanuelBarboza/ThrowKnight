@@ -19,7 +19,8 @@ var current_weapon_index: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	health_bar.setup(health)
+	health = max_health
+	health_bar.setup(max_health)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,10 +40,13 @@ func change_weapon() -> void:
 
 
 func set_weapon(index: int) -> void:
+	var weapon_pos = Vector2.ZERO
 	if index >= 0 and index < weapon_scenes.size():
 		if weapon:
+			weapon_pos = weapon.position
 			weapon.queue_free()  # Elimina el arma anterior
 		weapon = weapon_scenes[index].instantiate()
+		weapon.position = weapon_pos
 		add_child(weapon)  # Agrega la nueva arma como hijo
 		current_weapon_index = index
 

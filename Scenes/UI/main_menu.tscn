@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwxpri08alw77"]
+
+[ext_resource type="FontFile" uid="uid://b42c8dlyf8m0f" path="res://Assets/fonts/gemunu-libre-v8-latin-700.ttf" id="1_aoget"]
+[ext_resource type="PackedScene" uid="uid://djuhlk681gky5" path="res://Scenes/UI/menu_button.tscn" id="2_hqy13"]
+[ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="2_qlwdy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1khju"]
+font = ExtResource("1_aoget")
+font_size = 64
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "ThrowKnight"
+label_settings = SubResource("LabelSettings_1khju")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MenuButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
+z_index = 100
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -100
+scale = Vector2(500, 500)
+texture = ExtResource("2_qlwdy")

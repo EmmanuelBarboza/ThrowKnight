@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://h78bfjkku6x7"]
+
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="1_1laua"]
+[ext_resource type="Script" path="res://Scripts/box.gd" id="1_vv62o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0odk"]
+size = Vector2(15, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2w28s"]
+size = Vector2(15, 10)
+
+[node name="Box" type="StaticBody2D" groups=["Obstacles"]]
+script = ExtResource("1_vv62o")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_w0odk")
+debug_color = Color(0.996027, 0, 0.194552, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_2w28s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.5, -1)
+scale = Vector2(0.9375, 0.727273)
+texture = ExtResource("1_1laua")
+region_enabled = true
+region_rect = Rect2(208, 201, 16, 22)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

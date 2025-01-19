@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://bcjuobvj4m8o"]
+
+[ext_resource type="Script" path="res://Scripts/potion.gd" id="1_yw6od"]
+[ext_resource type="Texture2D" uid="uid://cjukdlqba6lxw" path="res://Assets/other/Potion.png" id="2_2spb6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfqrj"]
+atlas = ExtResource("2_2spb6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu2pw"]
+atlas = ExtResource("2_2spb6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6qjq"]
+atlas = ExtResource("2_2spb6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieeg8"]
+atlas = ExtResource("2_2spb6")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qgmdc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfqrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu2pw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6qjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieeg8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_07cfj"]
+radius = 6.0
+
+[node name="Potion" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_yw6od")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qgmdc")
+autoplay = "default"
+frame_progress = 0.716487
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_07cfj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

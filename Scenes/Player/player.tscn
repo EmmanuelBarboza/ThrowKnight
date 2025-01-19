@@ -91,12 +91,13 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon") groups=["Player"]]
+z_index = 5
 collision_layer = 2
 collision_mask = 19
 script = ExtResource("1_yyaoo")
 weapon = NodePath("Sword")
 move_speed = 150
-health = 2000.0
+max_health = 700.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -113,6 +114,7 @@ shape = SubResource("CircleShape2D_lreet")
 zoom = Vector2(1.79, 1.79)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -17.0
 offset_top = -38.0
 offset_right = 23.0

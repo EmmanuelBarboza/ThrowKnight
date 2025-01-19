@@ -8,6 +8,7 @@
 priority = 1
 script = ExtResource("2_bm1ec")
 speed_mult = 100.0
+ammount_bounces = 1
 
 [node name="Sprite2D" parent="." index="1"]
 rotation = 1.5708
