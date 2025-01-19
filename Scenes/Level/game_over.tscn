@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqg13qh74yxol"]
+[gd_scene load_steps=5 format=3 uid="uid://dqg13qh74yxol"]
 
 [ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="1_4mqsh"]
 [ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_dqh1m"]
+[ext_resource type="FontFile" uid="uid://b42c8dlyf8m0f" path="res://Assets/fonts/gemunu-libre-v8-latin-700.ttf" id="3_oebeu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qpe40"]
+font = ExtResource("3_oebeu")
+font_size = 64
+font_color = Color(1, 0.223529, 0, 1)
+outline_size = 4
+shadow_size = 24
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource("1_dqh1m")
@@ -35,5 +43,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "GAME OVER
 SPACE TO RESTART"
+label_settings = SubResource("LabelSettings_qpe40")
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -98,13 +98,13 @@ debug_color = Color(0.908382, 0.173581, 0.608707, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
-position = Vector2(17, 0)
+position = Vector2(25, 0)
 region_enabled = true
 region_rect = Rect2(148, 34, 8, 28)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(17, 0)
+position = Vector2(25, 0)
 
 [node name="ShootingDelayTimer" type="Timer" parent="."]
 wait_time = 0.8

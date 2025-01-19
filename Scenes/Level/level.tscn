@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://c7a3rfuhqel45"]
+[gd_scene load_steps=20 format=4 uid="uid://c7a3rfuhqel45"]
 
 [ext_resource type="Texture2D" uid="uid://culwywj0kj3j7" path="res://Assets/tiles.png" id="2_sblfv"]
 [ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="3_4w6p0"]
@@ -10,6 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://ctaphsn6qhkbo" path="res://Scenes/Enviorment/Spikes.tscn" id="5_kcnwl"]
 [ext_resource type="AudioStream" uid="uid://n7f0hmkyqd7i" path="res://Assets/sounds/Dark Boss.mp3" id="5_wryom"]
 [ext_resource type="PackedScene" uid="uid://bcjuobvj4m8o" path="res://Scenes/Enviorment/potion.tscn" id="6_7a8x4"]
+
+[sub_resource type="Environment" id="Environment_x0is0"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 1.2
+glow_blend_mode = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vmb7f"]
 texture = ExtResource("2_sblfv")
@@ -1153,6 +1159,9 @@ sources/0 = SubResource("TileSetAtlasSource_q0onf")
 
 [node name="Level" type="Node2D"]
 position = Vector2(543, -405)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x0is0")
 
 [node name="BackGround" type="Sprite2D" parent="."]
 z_index = -100

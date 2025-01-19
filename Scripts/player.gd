@@ -2,6 +2,7 @@
 class_name Player
 extends Entity
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var label: Label = $Label
 var current_weapon_index: int = 0
@@ -21,6 +22,7 @@ var current_weapon_index: int = 0
 func _ready() -> void:
 	health = max_health
 	health_bar.setup(max_health)
+	animation_player.play("idle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,9 +75,12 @@ func  move_logic(_delta: float) -> void:
 
 
 func die() -> void:
-	SignalManager.on_player_die.emit()
-	#En caso de que muera el enemigo se para el process y se libera el nodo
+	Engine.time_scale = 0.5
 	set_process(false)
+	animation_player.play("die")
+
+func  emit_die_signal() -> void:
+	SignalManager.on_player_die.emit()
 	queue_free()
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
@@ -86,6 +91,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if  area.is_in_group("enemy_projectile"):
 		if area is Projectile or trail:
 			take_damage(area.base_damage)
+			area.despawn()
 	
 
 func update_ui(_health: float) -> void:

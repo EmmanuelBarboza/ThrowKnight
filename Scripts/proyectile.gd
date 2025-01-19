@@ -5,7 +5,6 @@ extends Area2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 
@@ -17,7 +16,7 @@ extends Area2D
 @export var spins: bool = true
 #The velocity at which the projectile will spin
 @export var spin_speed: float = 200
-#If the projectile can still move
+#If the projectile can move
 @export var can_move: bool = true
 
 @export_group("Offensive stats") #OFFENSIVE RELATED VARIABLES

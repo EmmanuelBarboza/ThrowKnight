@@ -6,5 +6,8 @@ extends Area2D
 
 @export var base_damage: float = 100
 
+func despawn() -> void:
+	animation_player.play("despawn")
+
 func _on_despawn_timer_timeout() -> void:
 	animation_player.play("despawn")

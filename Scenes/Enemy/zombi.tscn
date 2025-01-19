@@ -1,9 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://by44o0a1p3l0b"]
+[gd_scene load_steps=7 format=3 uid="uid://by44o0a1p3l0b"]
 
 [ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_0te8x"]
 [ext_resource type="Script" path="res://Scripts/zombi.gd" id="2_ppyd7"]
 [ext_resource type="PackedScene" uid="uid://y0xlwsnk7swm" path="res://Scenes/Entity/hurtbox.tscn" id="3_aqf3l"]
 [ext_resource type="SpriteFrames" uid="uid://ds11pu6gqri05" path="res://Scenes/Enemy/zombi.tres" id="3_rqp4n"]
+[ext_resource type="Texture2D" uid="uid://jk1dsls3kx4j" path="res://Assets/other/drop_acid.png" id="5_shaol"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_suh8r"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 0.43
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 56.13
+gravity = Vector3(0, 100, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 43.97
+damping_max = 5.691
+scale_min = 0.5
+scale_max = 0.7
+anim_offset_min = 0.0732
+anim_offset_max = 0.2242
 
 [node name="Zombi" node_paths=PackedStringArray("hit_sound") instance=ExtResource("1_0te8x")]
 z_index = 5
@@ -40,6 +57,17 @@ autostart = true
 [node name="AcidShoot" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="Sounds" index="1"]
+
+[node name="BleedParticle" type="GPUParticles2D" parent="." index="8"]
+position = Vector2(0, -14)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_suh8r")
+texture = ExtResource("5_shaol")
+explosiveness = 0.49
+randomness = 0.84
+fixed_fps = 0
+collision_base_size = 0.0
+draw_order = 0
 
 [connection signal="timeout" from="Timers/BasicAttackTimer" to="." method="shoot_basic"]
 [connection signal="timeout" from="Timers/TrailAttackTimer" to="." method="acid_floor"]

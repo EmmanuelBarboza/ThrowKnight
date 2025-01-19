@@ -9,6 +9,7 @@ func _ready() -> void:
 	SignalManager.connect("on_player_die",_on_player_die)
 
 func _on_player_die() -> void:
+	Engine.time_scale = 1.0
 	call_deferred("change_scene", GAME_OVER)
 
 func change_scene(scene: PackedScene) -> void:

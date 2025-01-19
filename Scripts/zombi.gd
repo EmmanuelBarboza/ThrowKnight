@@ -6,6 +6,11 @@ const ACID_TRAIL: PackedScene = preload("res://Scenes/Weapons/acid_trail.tscn")
 
 @onready var basic_attack_timer: Timer = $Timers/BasicAttackTimer
 @onready var trail_attack_timer: Timer = $Timers/TrailAttackTimer
+@onready var bleed_particle: GPUParticles2D = $BleedParticle
+
+
+
+const ZOMBI_ENRAGED = preload("res://Scenes/Enemy/zombi_enraged.tres")
 
 var bouncy: bool = false
 
@@ -13,6 +18,12 @@ var bouncy: bool = false
 func _process(_delta: float) -> void:
 	movement()
 	move_and_slide()
+	
+	if health < phase_1_treshold:
+		animated_sprite.sprite_frames = ZOMBI_ENRAGED
+
+	if health < phase_2_treshold:
+		bleed_particle.emitting = true
 	
 
 #Shoots an acid ball towards the player

@@ -1,0 +1,72 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://bu5ndf5m4ane6"]
+
+[ext_resource type="Texture2D" uid="uid://7hwsnpissb04" path="res://Assets/other/ZombieBossRage.png" id="1_nj36y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o3fk"]
+atlas = ExtResource("1_nj36y")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k7xi"]
+atlas = ExtResource("1_nj36y")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv173"]
+atlas = ExtResource("1_nj36y")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y41sf"]
+atlas = ExtResource("1_nj36y")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u50mw"]
+atlas = ExtResource("1_nj36y")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i2jo"]
+atlas = ExtResource("1_nj36y")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxlj0"]
+atlas = ExtResource("1_nj36y")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ougs"]
+atlas = ExtResource("1_nj36y")
+region = Rect2(192, 64, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o3fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k7xi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv173")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y41sf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u50mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i2jo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxlj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ougs")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
