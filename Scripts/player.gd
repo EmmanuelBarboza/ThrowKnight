@@ -17,6 +17,7 @@ var current_weapon_index: int = 0
 #const AXE: PackedScene = preload("res://Scenes/Weapons/axe.tscn")
 @onready var health_bar: Control = $CanvasLayer/UI/HealthBar
 
+var pause_state : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,12 +29,18 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	move_logic(delta)
-	#shooting_logic()
 	change_weapon()
-	
+	pause_logic()
 	move_and_slide()
 	
+	if Input.is_key_pressed(KEY_ENTER):
+		die()
 	
+	
+
+func pause_logic() -> void:
+	if Input.is_action_just_pressed("pause"):
+		SignalManager.on_pause_pressed.emit(false)
 
 func change_weapon() -> void:
 	if Input.is_action_just_pressed("switch_weapon"):
@@ -77,6 +84,8 @@ func  move_logic(_delta: float) -> void:
 func die() -> void:
 	Engine.time_scale = 0.5
 	set_process(false)
+	weapon.hide()
+	weapon.set_process(false)
 	animation_player.play("die")
 
 func  emit_die_signal() -> void:

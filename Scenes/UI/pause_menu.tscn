@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://e1n3sewgjthk"]
+
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_qx8or"]
+[ext_resource type="Texture2D" uid="uid://c6dgumywg6fai" path="res://Assets/other/button_texture.png" id="2_ayynx"]
+[ext_resource type="LabelSettings" uid="uid://b7mavgvpnxxui" path="res://Scenes/UI/inst.tres" id="3_8lx7o"]
+[ext_resource type="LabelSettings" uid="uid://c1bg41kl0eaix" path="res://Scenes/UI/main_menu.tres" id="4_dw8oo"]
+[ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="5_xlkij"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qx8or")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_ayynx")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -15.5
+offset_right = 45.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESUME"
+label_settings = ExtResource("3_8lx7o")
+horizontal_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_ayynx")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TextureButton2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -15.5
+offset_right = 26.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT"
+label_settings = ExtResource("3_8lx7o")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "PAUSED"
+label_settings = ExtResource("4_dw8oo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.454902)
+z_index = -1
+scale = Vector2(300, 300)
+texture = ExtResource("5_xlkij")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]

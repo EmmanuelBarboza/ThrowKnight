@@ -1,12 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwxpri08alw77"]
+[gd_scene load_steps=11 format=3 uid="uid://cwxpri08alw77"]
 
 [ext_resource type="FontFile" uid="uid://b42c8dlyf8m0f" path="res://Assets/fonts/gemunu-libre-v8-latin-700.ttf" id="1_aoget"]
+[ext_resource type="LabelSettings" uid="uid://c1bg41kl0eaix" path="res://Scenes/UI/main_menu.tres" id="1_wtbvt"]
+[ext_resource type="LabelSettings" uid="uid://b7mavgvpnxxui" path="res://Scenes/UI/inst.tres" id="2_0kj1t"]
 [ext_resource type="PackedScene" uid="uid://djuhlk681gky5" path="res://Scenes/UI/menu_button.tscn" id="2_hqy13"]
 [ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="2_qlwdy"]
+[ext_resource type="PackedScene" uid="uid://dlqors5chofvy" path="res://Scenes/Level/zombie_level.tscn" id="4_jqheb"]
+[ext_resource type="PackedScene" uid="uid://tsjrixc436s4" path="res://Scenes/UI/credits.tscn" id="6_4kil2"]
+[ext_resource type="AudioStream" uid="uid://wed7p255g6tv" path="res://Assets/sounds/FamilyBuisness.mp3" id="6_n5wl7"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_1khju"]
+[sub_resource type="LabelSettings" id="LabelSettings_i7fa1"]
 font = ExtResource("1_aoget")
-font_size = 64
+font_size = 48
+font_color = Color(0.454902, 0.419608, 0.631373, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.47451)
+
+[sub_resource type="Environment" id="Environment_3egty"]
+background_mode = 3
+tonemap_white = 2.9
+glow_enabled = true
+glow_strength = 1.25
+glow_blend_mode = 1
+adjustment_enabled = true
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -15,6 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -28,24 +46,80 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="TitleLabel" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "ThrowKnight"
-label_settings = SubResource("LabelSettings_1khju")
+label_settings = ExtResource("1_wtbvt")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="InstructionsLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Controls:
+-WASD or arrows to move
+-Left click to throw 
+-E to swap weapons"
+label_settings = ExtResource("2_0kj1t")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 30
 
-[node name="MenuButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
+[node name="PlayButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
 z_index = 100
 layout_mode = 2
+scene_to_go = ExtResource("4_jqheb")
+
+[node name="Label" parent="MarginContainer/VBoxContainer/PlayButton" index="0"]
+text = "Play
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
+z_index = 100
+layout_mode = 2
+scene_to_go = ExtResource("6_4kil2")
+
+[node name="Label" parent="MarginContainer/VBoxContainer/CreditsButton" index="0"]
+text = "Credits
+"
+label_settings = SubResource("LabelSettings_i7fa1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
+z_index = 100
+layout_mode = 2
+
+[node name="Label" parent="MarginContainer/VBoxContainer/ExitButton" index="0"]
+text = "Exit
+"
+label_settings = SubResource("LabelSettings_i7fa1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -100
 scale = Vector2(500, 500)
 texture = ExtResource("2_qlwdy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3egty")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_n5wl7")
+autoplay = true
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PlayButton" to="MarginContainer/VBoxContainer/PlayButton" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/CreditsButton" to="MarginContainer/VBoxContainer/CreditsButton" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/ExitButton" to="MarginContainer/VBoxContainer/ExitButton" method="_on_mouse_entered"]
+
+[editable path="MarginContainer/VBoxContainer/PlayButton"]
+[editable path="MarginContainer/VBoxContainer/CreditsButton"]
+[editable path="MarginContainer/VBoxContainer/ExitButton"]

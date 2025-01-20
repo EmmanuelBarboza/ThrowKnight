@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://tsjrixc436s4"]
+
+[ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="1_a76nt"]
+[ext_resource type="LabelSettings" uid="uid://c1bg41kl0eaix" path="res://Scenes/UI/main_menu.tres" id="2_crw7r"]
+[ext_resource type="LabelSettings" uid="uid://b7mavgvpnxxui" path="res://Scenes/UI/inst.tres" id="3_sh0ib"]
+[ext_resource type="PackedScene" uid="uid://djuhlk681gky5" path="res://Scenes/UI/menu_button.tscn" id="4_ef0yq"]
+
+[sub_resource type="Environment" id="Environment_1qo8j"]
+background_mode = 3
+tonemap_white = 2.9
+glow_enabled = true
+glow_strength = 1.25
+glow_blend_mode = 1
+adjustment_enabled = true
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -100
+scale = Vector2(500, 500)
+texture = ExtResource("1_a76nt")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1qo8j")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Title" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "CREDITS"
+label_settings = ExtResource("2_crw7r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Developer
+Enma1890
+
+Music assets
+JHawk Studios
+
+Art assets
+MOMONGA
+"
+label_settings = ExtResource("3_sh0ib")
+horizontal_alignment = 1
+
+[node name="PlayButton" parent="MarginContainer" instance=ExtResource("4_ef0yq")]
+z_index = 100
+layout_mode = 2
+size_flags_vertical = 8
+go_to_menu = true
+
+[node name="Label" parent="MarginContainer/PlayButton" index="0"]
+text = "Back
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="MarginContainer/PlayButton" to="MarginContainer/PlayButton" method="_on_mouse_entered"]
+
+[editable path="MarginContainer/PlayButton"]

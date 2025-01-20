@@ -14,11 +14,16 @@ extends Node2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var throw_sound: AudioStreamPlayer2D = $ThrowSound
+@onready var sprite: Sprite2D = $Sprite2D
+
 
 @export var weapon_rotate_speed: float = 10
 
+
+
 func _ready() -> void:
 	animation_player.play("RESET")
+	SignalManager.connect("on_player_die", on_player_die)
 
 #Esta funcion devuelve el marcador, usado en el arma para la posicion inical del 
 #Proyectil y la rotacion 
@@ -56,6 +61,9 @@ func weapon_movement(delta: float) -> void:
 	else:
 		scale.y = 1
 
+func on_player_die() -> void:
+	print("here")
+	visible = false
 
 func shooting_logic() -> void:
 	if Input.is_action_just_pressed("shoot") and not shooting_delay_timer.time_left:

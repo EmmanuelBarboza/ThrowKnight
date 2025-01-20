@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv3uase56yslq"]
+[gd_scene load_steps=2 format=3 uid="uid://cv3uase56yslq"]
 
 [ext_resource type="PackedScene" uid="uid://b6gworptkrewx" path="res://Scenes/Entity/health_bar.tscn" id="1_ktt8u"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_x2205"]
-font_size = 24
 
 [node name="UI" type="Control"]
 z_index = 100
@@ -22,11 +19,3 @@ offset_top = -79.0
 offset_right = 68.0
 offset_bottom = -39.0
 grow_vertical = 0
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "CONTROLS: E - SWAP WEAPON ;  WASD - MOVE ; RIGHT CLICK - THROW
-"
-label_settings = SubResource("LabelSettings_x2205")

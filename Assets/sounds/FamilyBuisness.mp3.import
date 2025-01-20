@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/FamilyBuisness.mp3-9af87e89ac57e7b633910c1de6
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

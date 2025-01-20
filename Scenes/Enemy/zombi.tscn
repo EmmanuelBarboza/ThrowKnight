@@ -1,10 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://by44o0a1p3l0b"]
+[gd_scene load_steps=9 format=3 uid="uid://by44o0a1p3l0b"]
 
 [ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_0te8x"]
 [ext_resource type="Script" path="res://Scripts/zombi.gd" id="2_ppyd7"]
 [ext_resource type="PackedScene" uid="uid://y0xlwsnk7swm" path="res://Scenes/Entity/hurtbox.tscn" id="3_aqf3l"]
 [ext_resource type="SpriteFrames" uid="uid://ds11pu6gqri05" path="res://Scenes/Enemy/zombi.tres" id="3_rqp4n"]
+[ext_resource type="AudioStream" uid="uid://dae8plr1dpq8g" path="res://Assets/sounds/hitHurtHevy.wav" id="5_8i1l2"]
 [ext_resource type="Texture2D" uid="uid://jk1dsls3kx4j" path="res://Assets/other/drop_acid.png" id="5_shaol"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_70gym"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_suh8r"]
 particle_flag_disable_z = true
@@ -26,9 +33,9 @@ anim_offset_max = 0.2242
 z_index = 5
 script = ExtResource("2_ppyd7")
 follow_radius = 1200.0
-phase_1_treshold = 8000.0
-phase_2_treshold = 6000.0
-phase_3_treshold = 2000.0
+phase_1_treshold = 6000.0
+phase_2_treshold = 3000.0
+phase_3_treshold = 1500.0
 move_speed = 30
 max_health = 10000.0
 hit_sound = NodePath("Sounds/HitSound")
@@ -38,7 +45,14 @@ sprite_frames = ExtResource("3_rqp4n")
 animation = &"run"
 autoplay = "idle"
 
+[node name="Hitbox" parent="." index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+
 [node name="Hurtbox" parent="." index="4" instance=ExtResource("3_aqf3l")]
+visible = false
 position = Vector2(0, 1)
 collision_layer = 32
 collision_mask = 0
@@ -57,8 +71,10 @@ autostart = true
 [node name="AcidShoot" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="Sounds" index="1"]
+stream = ExtResource("5_8i1l2")
 
 [node name="BleedParticle" type="GPUParticles2D" parent="." index="8"]
+material = SubResource("CanvasItemMaterial_70gym")
 position = Vector2(0, -14)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_suh8r")

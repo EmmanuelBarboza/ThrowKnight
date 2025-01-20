@@ -1,15 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://djuhlk681gky5"]
+[gd_scene load_steps=7 format=3 uid="uid://djuhlk681gky5"]
 
 [ext_resource type="Texture2D" uid="uid://c6dgumywg6fai" path="res://Assets/other/button_texture.png" id="1_w1t44"]
+[ext_resource type="Texture2D" uid="uid://crlxfgyix5qaw" path="res://Assets/other/button_texture_hover.png" id="2_4jtga"]
 [ext_resource type="Script" path="res://Scripts/menu_button.gd" id="2_p8bmr"]
 [ext_resource type="FontFile" uid="uid://b42c8dlyf8m0f" path="res://Assets/fonts/gemunu-libre-v8-latin-700.ttf" id="2_uwc6x"]
+[ext_resource type="AudioStream" uid="uid://db7iepjtlnl3p" path="res://Assets/sounds/blipSelect.wav" id="4_0ppan"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v20le"]
 font = ExtResource("2_uwc6x")
-font_size = 24
+font_size = 52
+font_color = Color(0.454902, 0.419608, 0.631373, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.47451)
 
 [node name="MenuButton" type="TextureButton"]
+offset_right = 128.0
+offset_bottom = 64.0
+pivot_offset = Vector2(64, 30)
+size_flags_horizontal = 0
 texture_normal = ExtResource("1_w1t44")
+texture_hover = ExtResource("2_4jtga")
 script = ExtResource("2_p8bmr")
 
 [node name="Label" type="Label" parent="."]
@@ -19,13 +30,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -52.0
+offset_top = -32.0
+offset_right = 51.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "PLAY"
+pivot_offset = Vector2(51.595, 30.495)
+text = "
+"
 label_settings = SubResource("LabelSettings_v20le")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0ppan")
+
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

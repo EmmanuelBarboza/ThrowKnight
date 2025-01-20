@@ -7,6 +7,7 @@ const MAIN_MENU = preload("res://Scenes/UI/main_menu.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.connect("on_player_die",_on_player_die)
+	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 func _on_player_die() -> void:
 	Engine.time_scale = 1.0
@@ -20,6 +21,9 @@ func change_main_scene() -> void:
 
 func spawn_projectile(projectile) -> void:
 	get_tree().root.get_node("Level").get_node("ProjectileContainer").add_child(projectile)
+
+func exit_game() -> void:
+	get_tree().quit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
