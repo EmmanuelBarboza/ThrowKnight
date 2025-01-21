@@ -3,6 +3,9 @@ class_name Player
 extends Entity
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var time_stop_duration_timer: Timer = $Timers/TimeStopDurationTimer
+@onready var time_stop_cooldown_timer: Timer = $Timers/TimeStopCooldownTimer
+
 
 @onready var label: Label = $Label
 var current_weapon_index: int = 0
@@ -24,6 +27,8 @@ func _ready() -> void:
 	health = max_health
 	health_bar.setup(max_health)
 	animation_player.play("idle")
+	set_weapon(0)
+	SignalManager.on_player_ready.emit(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +36,7 @@ func _process(delta: float) -> void:
 	move_logic(delta)
 	change_weapon()
 	pause_logic()
+	ability_logic()
 	move_and_slide()
 	
 	if Input.is_key_pressed(KEY_ENTER):
@@ -58,6 +64,14 @@ func set_weapon(index: int) -> void:
 		weapon.position = weapon_pos
 		add_child(weapon)  # Agrega la nueva arma como hijo
 		current_weapon_index = index
+
+func ability_logic() -> void:
+	if (Input.is_action_just_pressed("ability") 
+	and not time_stop_duration_timer.time_left
+	and not time_stop_cooldown_timer.time_left):
+		time_stop_duration_timer.start()
+		time_stop_cooldown_timer.start()
+		Engine.time_scale = 0.2
 
 func  move_logic(_delta: float) -> void:
 	
@@ -105,3 +119,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 func update_ui(_health: float) -> void:
 	health_bar.update_health(_health)
+
+
+func _on_timer_timeout() -> void:
+	Engine.time_scale = 1.0

@@ -19,6 +19,8 @@ extends Area2D
 #If the projectile can move
 @export var can_move: bool = true
 
+@export var slow_spawn: bool = false
+
 @export_group("Offensive stats") #OFFENSIVE RELATED VARIABLES
 #The base damage of the projectile
 @export var base_damage: float = 100 
@@ -31,11 +33,28 @@ extends Area2D
 
 #This function controlls the movement of the projectile
 func movement(delta: float) -> void:
+	
+
+	if slow_spawn:
+		animation_player.play("spawn")
+	else:
+		move_projectile(delta)
+
+func change_direction(new_direction: Vector2) -> void:
+	# Cambia la dirección a un nuevo vector normalizado
+	transform.x = new_direction.normalized()
+
+
+func move_projectile(delta: float) -> void:
 	if can_move == true: 
 		if spins == true:
 			spin_logic(delta)
 		#Moves the projectile on a straight line
 		global_position += transform.x * speed_mult * delta 
+		
+
+func update_rotation_to_player() -> void:
+	rotation = (GameManager.player.position - position).angle()
 
 #This function rotates the sprite of the weapon
 func spin_logic(delta: float) -> void:

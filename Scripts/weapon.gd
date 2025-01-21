@@ -23,7 +23,7 @@ extends Node2D
 
 func _ready() -> void:
 	animation_player.play("RESET")
-	SignalManager.connect("on_player_die", on_player_die)
+
 
 #Esta funcion devuelve el marcador, usado en el arma para la posicion inical del 
 #Proyectil y la rotacion 
@@ -61,9 +61,7 @@ func weapon_movement(delta: float) -> void:
 	else:
 		scale.y = 1
 
-func on_player_die() -> void:
-	print("here")
-	visible = false
+
 
 func shooting_logic() -> void:
 	if Input.is_action_just_pressed("shoot") and not shooting_delay_timer.time_left:
@@ -76,6 +74,6 @@ func shoot() -> void:
 		var new_proyectile: Projectile = get_weapon_projectile().instantiate()
 		new_proyectile.global_position = get_shooting_marker().global_position
 		new_proyectile.rotation = rotation
-		GameManager.spawn_projectile(new_proyectile)
+		GameManager._spawn_projectile(new_proyectile)
 		shooting_delay_timer.start()
 		animation_player.play("RESET")

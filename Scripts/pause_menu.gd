@@ -5,11 +5,6 @@ extends Control
 func _ready() -> void:
 	SignalManager.connect("on_pause_pressed", pause)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func pause(state: bool) -> void:
 	if state == true:
 		hide()
@@ -17,7 +12,6 @@ func pause(state: bool) -> void:
 	else:
 		show()
 		get_tree().paused = true
-
 
 func _on_texture_button_pressed() -> void:
 	pause(true)

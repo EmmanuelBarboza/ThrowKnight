@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://ifdijf121jfk"]
+
+[ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_k11n3"]
+[ext_resource type="Script" path="res://Scripts/mage_boss.gd" id="2_c2ybj"]
+[ext_resource type="Texture2D" uid="uid://i28vvinjourn" path="res://Assets/other/MageBoss.png" id="2_i4hbl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwlkg"]
+atlas = ExtResource("2_i4hbl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ya1e"]
+atlas = ExtResource("2_i4hbl")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgdn6"]
+atlas = ExtResource("2_i4hbl")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28h6h"]
+atlas = ExtResource("2_i4hbl")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shv7h"]
+atlas = ExtResource("2_i4hbl")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtf3p"]
+atlas = ExtResource("2_i4hbl")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nh2hs"]
+atlas = ExtResource("2_i4hbl")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5118"]
+atlas = ExtResource("2_i4hbl")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_76nmv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwlkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ya1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgdn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28h6h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shv7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtf3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nh2hs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5118")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[node name="MageBoss" instance=ExtResource("1_k11n3")]
+script = ExtResource("2_c2ybj")
+follow_radius = 1200.0
+move_speed = 25
+max_health = 9000.0
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_76nmv")
+animation = &"run"
+autoplay = "idle"

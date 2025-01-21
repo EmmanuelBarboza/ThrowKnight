@@ -25,6 +25,7 @@ func _process(_delta: float) -> void:
 	if health < phase_2_treshold:
 		bleed_particle.emitting = true
 	
+	
 
 #Shoots an acid ball towards the player
 func shoot_basic() -> void:
@@ -33,11 +34,13 @@ func shoot_basic() -> void:
 		phase_attributes(new_proyectile)
 		new_proyectile.position = global_position
 		new_proyectile.rotation = get_player_angle()
-		GameManager.spawn_projectile(new_proyectile)
-		
-		
-		
-	
+		GameManager.spawn_projectile(new_proyectile, position)
+		slow_down()
+
+func slow_down() -> void:
+	var tween = create_tween()
+	tween.tween_property(self, "move_speed", 18, 0.5)
+	tween.tween_property(self, "move_speed", 30, 0.01)
 
 #Shoots an acid ball that leaves behind an acid trail
 func acid_floor() -> void:
@@ -50,7 +53,7 @@ func acid_floor() -> void:
 		phase_attributes(trail_new)
 		trail_new.position = global_position
 		trail_new.rotation = get_player_angle() + rotation_mod
-		GameManager.spawn_projectile(trail_new)
+		GameManager._spawn_projectile(trail_new)
 
 func phase_attributes(projectile: Projectile) -> void:
 	if health <= phase_1_treshold:

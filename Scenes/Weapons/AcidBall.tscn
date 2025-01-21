@@ -5,9 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://cfqdice4j2uqq" path="res://Assets/other/AcidBall.png" id="3_1tley"]
 
 [node name="AcidBall" groups=["enemy_projectile"] instance=ExtResource("1_5d2ks")]
+z_index = 5
 script = ExtResource("2_8eke4")
 speed_mult = 300.0
 spins = false
+slow_spawn = true
 ammount_bounces = 1
 
 [node name="Sprite2D" parent="." index="1"]

@@ -20,7 +20,7 @@ func effect() -> void:
 	var trail_new = TRAIL.instantiate()
 	trail_new.position = global_position
 	trail_new.rotation = rotation
-	GameManager.spawn_projectile(trail_new)
+	GameManager.spawn_trail(trail_new)
 
 
 
