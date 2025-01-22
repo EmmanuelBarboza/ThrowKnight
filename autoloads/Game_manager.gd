@@ -33,6 +33,9 @@ func on_boss_defeated(enemy: Enemy) -> void:
 	
 
 func change_scene(scene: PackedScene) -> void:
+	call_deferred("_change_scene", scene)
+
+func _change_scene(scene: PackedScene) -> void:
 	get_tree().change_scene_to_packed(scene)
 
 func change_main_scene() -> void:

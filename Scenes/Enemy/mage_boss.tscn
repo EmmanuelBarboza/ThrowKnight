@@ -114,6 +114,7 @@ texture = ExtResource("4_g4bvf")
 [node name="Timers" type="Node" parent="." index="6"]
 
 [node name="MultiShotTimer" type="Timer" parent="Timers" index="0"]
+wait_time = 1.8
 autostart = true
 
 [connection signal="timeout" from="Timers/MultiShotTimer" to="." method="multi_shot"]
