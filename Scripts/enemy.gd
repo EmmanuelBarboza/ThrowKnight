@@ -93,3 +93,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 func update_ui(_health: float) -> void:
 	health_bar.update_health(_health)
+
+
+func emit_die_signal() -> void:
+	SignalManager.on_boss_defeated.emit(self)

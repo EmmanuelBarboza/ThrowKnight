@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ifdijf121jfk"]
+[gd_scene load_steps=14 format=3 uid="uid://ifdijf121jfk"]
 
 [ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_k11n3"]
 [ext_resource type="Script" path="res://Scripts/mage_boss.gd" id="2_c2ybj"]
 [ext_resource type="Texture2D" uid="uid://i28vvinjourn" path="res://Assets/other/MageBoss.png" id="2_i4hbl"]
+[ext_resource type="Texture2D" uid="uid://ch0bsxficlkjo" path="res://Assets/other/MageSpawner.png" id="4_g4bvf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mwlkg"]
 atlas = ExtResource("2_i4hbl")
@@ -83,3 +84,36 @@ max_health = 9000.0
 sprite_frames = SubResource("SpriteFrames_76nmv")
 animation = &"run"
 autoplay = "idle"
+
+[node name="Markers" type="Node2D" parent="." index="5"]
+
+[node name="TopMarker" type="Marker2D" parent="Markers" index="0"]
+position = Vector2(0, -50)
+
+[node name="Sprite2D" type="Sprite2D" parent="Markers/TopMarker" index="0"]
+texture = ExtResource("4_g4bvf")
+
+[node name="BottomMarker" type="Marker2D" parent="Markers" index="1"]
+position = Vector2(0, 50)
+
+[node name="Sprite2D" type="Sprite2D" parent="Markers/BottomMarker" index="0"]
+texture = ExtResource("4_g4bvf")
+
+[node name="RightMarker" type="Marker2D" parent="Markers" index="2"]
+position = Vector2(50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Markers/RightMarker" index="0"]
+texture = ExtResource("4_g4bvf")
+
+[node name="LeftMarker" type="Marker2D" parent="Markers" index="3"]
+position = Vector2(-50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Markers/LeftMarker" index="0"]
+texture = ExtResource("4_g4bvf")
+
+[node name="Timers" type="Node" parent="." index="6"]
+
+[node name="MultiShotTimer" type="Timer" parent="Timers" index="0"]
+autostart = true
+
+[connection signal="timeout" from="Timers/MultiShotTimer" to="." method="multi_shot"]

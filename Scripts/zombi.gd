@@ -1,3 +1,4 @@
+class_name ZombieBoss
 extends Enemy
 
 const ZOMBIE_ACID: PackedScene = preload("res://Scenes/Weapons/AcidBall.tscn")

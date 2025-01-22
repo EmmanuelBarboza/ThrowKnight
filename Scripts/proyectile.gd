@@ -21,6 +21,10 @@ extends Area2D
 
 @export var slow_spawn: bool = false
 
+@export var follow_marker: bool = false
+
+var following_marker: Marker2D 
+
 @export_group("Offensive stats") #OFFENSIVE RELATED VARIABLES
 #The base damage of the projectile
 @export var base_damage: float = 100 
@@ -31,10 +35,12 @@ extends Area2D
 #The ammount of bounces the projectiles does before despawn
 @export var ammount_bounces: int = 0
 
+
 #This function controlls the movement of the projectile
 func movement(delta: float) -> void:
 	
-
+	update_position_to_marker()
+	
 	if slow_spawn:
 		animation_player.play("spawn")
 	else:
@@ -55,6 +61,10 @@ func move_projectile(delta: float) -> void:
 
 func update_rotation_to_player() -> void:
 	rotation = (GameManager.player.position - position).angle()
+
+func update_position_to_marker() -> void:
+	if follow_marker:
+		position = following_marker.global_position
 
 #This function rotates the sprite of the weapon
 func spin_logic(delta: float) -> void:

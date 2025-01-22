@@ -60,8 +60,7 @@ func emit_die_signal() -> void:
 #Function that sets the process to falses and queue frees the entity
 func die() -> void:
 	#En caso de que muera el enemigo se para el process y se libera el nodo
-	if self is Enemy:
-		GameManager.change_main_scene()
+	emit_die_signal()
 	set_process(false)
 	queue_free()
 
