@@ -17,4 +17,5 @@ tile_map_data = PackedByteArray("AAD3/wEAAQAAAAAAAgD3/wIAAQAAAAAAAgD3/wMAAQAAAAA
 position = Vector2(0, 227)
 
 [node name="Zombi" parent="Entities" index="1" instance=ExtResource("3_m5jrh")]
+material = null
 position = Vector2(0, 56)

@@ -94,6 +94,13 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 func update_ui(_health: float) -> void:
 	health_bar.update_health(_health)
 
+func shader_logic() -> void:
+	var tween = create_tween()
+	tween.tween_method(shader_blink, 1.0,0.0, 0.5)
+	
+
+func shader_blink (newValue : float):
+	animated_sprite.material.set_shader_parameter("blink_intensity", newValue)
 
 func emit_die_signal() -> void:
 	SignalManager.on_boss_defeated.emit(self)

@@ -1,8 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhfnfgd0h8csx"]
+[gd_scene load_steps=9 format=3 uid="uid://dhfnfgd0h8csx"]
 
+[ext_resource type="Shader" path="res://Scripts/enemy.gdshader" id="1_ij632"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_k0i7i"]
 [ext_resource type="PackedScene" uid="uid://cvp3k4pb4jvey" path="res://Scenes/Entity/hitbox.tscn" id="2_mcea3"]
 [ext_resource type="PackedScene" uid="uid://b6gworptkrewx" path="res://Scenes/Entity/health_bar.tscn" id="3_7h0kw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lmq8"]
+shader = ExtResource("1_ij632")
+shader_parameter/blink_color = null
+shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7hgl"]
+shader = ExtResource("1_ij632")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rvjd0"]
 
@@ -11,12 +22,14 @@ radius = 21.6667
 
 [node name="Enemy" type="CharacterBody2D"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_7lmq8")
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_k0i7i")
 move_speed = 50
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_r7hgl")
 position = Vector2(0, -20)
 sprite_frames = SubResource("SpriteFrames_rvjd0")
 
