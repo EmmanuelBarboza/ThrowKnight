@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://brc0dn5bv74n6"]
+
+[ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_vllfm"]
+[ext_resource type="Shader" path="res://Scripts/enemy.gdshader" id="2_62c40"]
+[ext_resource type="Texture2D" uid="uid://tr4ds3w0s4q6" path="res://Assets/other/Skull_animated.png" id="2_ipvbv"]
+[ext_resource type="Script" path="res://Scripts/flying_skull.gd" id="2_qmqsr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72v6t"]
+resource_local_to_scene = true
+shader = ExtResource("2_62c40")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwouw"]
+atlas = ExtResource("2_ipvbv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpd0r"]
+atlas = ExtResource("2_ipvbv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kyye"]
+atlas = ExtResource("2_ipvbv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7ubd"]
+atlas = ExtResource("2_ipvbv")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vqrgh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwouw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpd0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kyye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7ubd")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[node name="FlyingSkull" instance=ExtResource("1_vllfm")]
+use_parent_material = true
+script = ExtResource("2_qmqsr")
+move_speed = 200
+max_health = 700.0
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_72v6t")
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_vqrgh")
+animation = &"run"
+
+[node name="CollisionShape2D2" parent="Hitbox" index="0"]
+position = Vector2(-1, 1)
+
+[node name="Timers" type="Node" parent="." index="5"]
+
+[node name="AttackTimer" type="Timer" parent="Timers" index="0"]
+autostart = true
+
+[node name="ChargeTimer" type="Timer" parent="Timers" index="1"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="attack"]
+
+[editable path="Hitbox"]

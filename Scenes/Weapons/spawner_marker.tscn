@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3kx5fd5u54x1"]
+
+[ext_resource type="Texture2D" uid="uid://ch0bsxficlkjo" path="res://Assets/other/MageSpawner.png" id="1_d4hjk"]
+
+[node name="SpawnerMarker" type="Marker2D"]
+position = Vector2(0, -50)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d4hjk")

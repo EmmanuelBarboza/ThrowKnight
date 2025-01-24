@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://by44o0a1p3l0b"]
+[gd_scene load_steps=11 format=3 uid="uid://by44o0a1p3l0b"]
 
 [ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_0te8x"]
 [ext_resource type="Script" path="res://Scripts/zombi.gd" id="2_ppyd7"]
@@ -6,6 +6,27 @@
 [ext_resource type="SpriteFrames" uid="uid://ds11pu6gqri05" path="res://Scenes/Enemy/zombi.tres" id="3_rqp4n"]
 [ext_resource type="AudioStream" uid="uid://dae8plr1dpq8g" path="res://Assets/sounds/hitHurtHevy.wav" id="5_8i1l2"]
 [ext_resource type="Texture2D" uid="uid://jk1dsls3kx4j" path="res://Assets/other/drop_acid.png" id="5_shaol"]
+
+[sub_resource type="Shader" id="Shader_fg43o"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+uniform vec4 blink_color: source_color;
+uniform float blink_intensity = 0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color = mix(color, blink_color, blink_intensity  * color.a);
+	
+	COLOR = color;
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mv8a1"]
+resource_local_to_scene = true
+shader = SubResource("Shader_fg43o")
+shader_parameter/blink_color = null
+shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_70gym"]
 particles_animation = true
@@ -31,6 +52,7 @@ anim_offset_max = 0.2242
 
 [node name="Zombi" node_paths=PackedStringArray("hit_sound") instance=ExtResource("1_0te8x")]
 z_index = 5
+material = SubResource("ShaderMaterial_mv8a1")
 script = ExtResource("2_ppyd7")
 follow_radius = 1200.0
 phase_1_treshold = 6000.0

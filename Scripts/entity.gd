@@ -38,7 +38,7 @@ var squash_and_stretch := 1.0:
 
 func take_damage(damage: float) -> void:
 	print("TAKE DAMAGE: ", self , " AMMOUNT: ", damage)
-	shader_logic()
+	shader_logic(self)
 	if hit_sound != null:
 		hit_sound.play()
 	
@@ -46,7 +46,7 @@ func take_damage(damage: float) -> void:
 	health -= damage
 	
 
-func shader_logic() -> void:
+func shader_logic(entity: Entity) -> void:
 	pass
 
 func heal(heal_ammount: float) -> void:
@@ -59,6 +59,8 @@ func update_ui(_health: float) -> void:
 
 func emit_die_signal() -> void:
 	pass
+
+
 
 #Function that sets the process to falses and queue frees the entity
 func die() -> void:

@@ -61,7 +61,10 @@ size_flags_vertical = 8
 text = "Controls:
 -WASD or arrows to move
 -Left click to throw 
--E to swap weapons"
+-E to swap weapons
+-ESC to pause
+-Space to slow down time (experimental)
+"
 label_settings = ExtResource("2_0kj1t")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]

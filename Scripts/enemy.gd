@@ -22,12 +22,15 @@ var target_direction: Vector2
 @export var phase_3_treshold: float
 
 func _ready() -> void:
+	health_setup()
+
+func health_setup() -> void:
 	health = max_health
 	health_bar.setup(max_health)
 	print("done")
 
-
 func _process(_delta: float) -> void:
+	
 	movement()
 	move_and_slide()
 
@@ -94,10 +97,10 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 func update_ui(_health: float) -> void:
 	health_bar.update_health(_health)
 
-func shader_logic() -> void:
+func shader_logic(entity: Entity) -> void:
 	var tween = create_tween()
 	tween.tween_method(shader_blink, 1.0,0.0, 0.5)
-	
+
 
 func shader_blink (newValue : float):
 	animated_sprite.material.set_shader_parameter("blink_intensity", newValue)

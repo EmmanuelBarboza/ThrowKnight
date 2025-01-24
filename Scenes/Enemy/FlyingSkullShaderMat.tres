@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cjxdyskbr4whw"]
+
+[ext_resource type="Shader" path="res://Scripts/enemy.gdshader" id="1_uskxn"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_uskxn")
+shader_parameter/blink_color = null
+shader_parameter/blink_intensity = 0.0

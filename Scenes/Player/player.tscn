@@ -215,7 +215,7 @@ collision_layer = 2
 collision_mask = 19
 script = ExtResource("1_yyaoo")
 move_speed = 150
-max_health = 700.0
+max_health = 1500.0
 hit_sound = NodePath("Sounds/AudioStreamPlayer2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -5,6 +5,7 @@ extends Entity
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var time_stop_duration_timer: Timer = $Timers/TimeStopDurationTimer
 @onready var time_stop_cooldown_timer: Timer = $Timers/TimeStopCooldownTimer
+@onready var camera_2d: Camera2D = $Camera2D
 
 
 @onready var label: Label = $Label
@@ -94,6 +95,9 @@ func  move_logic(_delta: float) -> void:
 	velocity = direction
 	
 
+func shader_logic(_entity: Entity) -> void:
+	var tween = create_tween()
+	tween.tween_method(camera_2d.start_camera_shake, 5.0, 1.0, 0.5)
 
 func die() -> void:
 	Engine.time_scale = 0.5

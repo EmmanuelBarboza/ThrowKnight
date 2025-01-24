@@ -1,9 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://ifdijf121jfk"]
+[gd_scene load_steps=18 format=3 uid="uid://ifdijf121jfk"]
 
 [ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_k11n3"]
 [ext_resource type="Script" path="res://Scripts/mage_boss.gd" id="2_c2ybj"]
 [ext_resource type="Texture2D" uid="uid://i28vvinjourn" path="res://Assets/other/MageBoss.png" id="2_i4hbl"]
-[ext_resource type="Texture2D" uid="uid://ch0bsxficlkjo" path="res://Assets/other/MageSpawner.png" id="4_g4bvf"]
+[ext_resource type="Material" uid="uid://tcfd25b7nleb" path="res://Scenes/Enemy/MageBossShaderMaterial.tres" id="2_j2j4f"]
+[ext_resource type="Shader" path="res://Scripts/enemy.gdshader" id="2_vws6u"]
+[ext_resource type="PackedScene" uid="uid://b3kx5fd5u54x1" path="res://Scenes/Weapons/spawner_marker.tscn" id="4_6432s"]
+[ext_resource type="AudioStream" uid="uid://dgmhjhe6i3xtx" path="res://Assets/sounds/hitHurtHeavy2.wav" id="7_gb38c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkaoj"]
+resource_local_to_scene = true
+shader = ExtResource("2_vws6u")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mwlkg"]
 atlas = ExtResource("2_i4hbl")
@@ -74,13 +83,18 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="MageBoss" instance=ExtResource("1_k11n3")]
+[node name="MageBoss" node_paths=PackedStringArray("hit_sound") instance=ExtResource("1_k11n3")]
+material = ExtResource("2_j2j4f")
+use_parent_material = true
 script = ExtResource("2_c2ybj")
 follow_radius = 1200.0
+phase_1_treshold = 6000.0
 move_speed = 25
 max_health = 9000.0
+hit_sound = NodePath("Sounds/HitSound")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_fkaoj")
 sprite_frames = SubResource("SpriteFrames_76nmv")
 animation = &"run"
 autoplay = "idle"
@@ -88,34 +102,31 @@ autoplay = "idle"
 [node name="Markers" type="Node2D" parent="." index="5"]
 position = Vector2(0, -11)
 
-[node name="TopMarker" type="Marker2D" parent="Markers" index="0"]
-position = Vector2(0, -50)
+[node name="TopSpawnerMarker" parent="Markers" index="0" instance=ExtResource("4_6432s")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Markers/TopMarker" index="0"]
-texture = ExtResource("4_g4bvf")
-
-[node name="BottomMarker" type="Marker2D" parent="Markers" index="1"]
+[node name="BottomSpawnerMarker" parent="Markers" index="1" instance=ExtResource("4_6432s")]
 position = Vector2(0, 50)
 
-[node name="Sprite2D" type="Sprite2D" parent="Markers/BottomMarker" index="0"]
-texture = ExtResource("4_g4bvf")
-
-[node name="RightMarker" type="Marker2D" parent="Markers" index="2"]
-position = Vector2(50, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Markers/RightMarker" index="0"]
-texture = ExtResource("4_g4bvf")
-
-[node name="LeftMarker" type="Marker2D" parent="Markers" index="3"]
+[node name="LeftSpawnerMarker" parent="Markers" index="2" instance=ExtResource("4_6432s")]
 position = Vector2(-50, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Markers/LeftMarker" index="0"]
-texture = ExtResource("4_g4bvf")
+[node name="RightSpawnerMarker" parent="Markers" index="3" instance=ExtResource("4_6432s")]
+position = Vector2(50, 0)
 
 [node name="Timers" type="Node" parent="." index="6"]
 
 [node name="MultiShotTimer" type="Timer" parent="Timers" index="0"]
-wait_time = 1.8
+wait_time = 2.5
 autostart = true
 
+[node name="SkullSpawnTimer" type="Timer" parent="Timers" index="1"]
+wait_time = 10.0
+autostart = true
+
+[node name="Sounds" type="Node" parent="." index="7"]
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
+stream = ExtResource("7_gb38c")
+
 [connection signal="timeout" from="Timers/MultiShotTimer" to="." method="multi_shot"]
+[connection signal="timeout" from="Timers/SkullSpawnTimer" to="." method="skull_spawn"]
