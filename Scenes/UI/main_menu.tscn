@@ -1,13 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwxpri08alw77"]
+[gd_scene load_steps=13 format=3 uid="uid://cwxpri08alw77"]
 
 [ext_resource type="FontFile" uid="uid://b42c8dlyf8m0f" path="res://Assets/fonts/gemunu-libre-v8-latin-700.ttf" id="1_aoget"]
 [ext_resource type="LabelSettings" uid="uid://c1bg41kl0eaix" path="res://Scenes/UI/main_menu.tres" id="1_wtbvt"]
 [ext_resource type="LabelSettings" uid="uid://b7mavgvpnxxui" path="res://Scenes/UI/inst.tres" id="2_0kj1t"]
 [ext_resource type="PackedScene" uid="uid://djuhlk681gky5" path="res://Scenes/UI/menu_button.tscn" id="2_hqy13"]
 [ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="2_qlwdy"]
-[ext_resource type="PackedScene" uid="uid://dlqors5chofvy" path="res://Scenes/Level/zombie_level.tscn" id="4_jqheb"]
+[ext_resource type="PackedScene" uid="uid://d34wainl4i821" path="res://Scenes/Level/Entrance.tscn" id="4_ldshs"]
+[ext_resource type="PackedScene" uid="uid://xdvb3x407joh" path="res://Scenes/UI/options_menu.tscn" id="5_tqjrm"]
 [ext_resource type="PackedScene" uid="uid://tsjrixc436s4" path="res://Scenes/UI/credits.tscn" id="6_4kil2"]
 [ext_resource type="AudioStream" uid="uid://wed7p255g6tv" path="res://Assets/sounds/FamilyBuisness.mp3" id="6_n5wl7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_13pe8"]
+font = ExtResource("1_aoget")
+font_size = 44
+font_color = Color(0.454902, 0.419608, 0.631373, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.47451)
 
 [sub_resource type="LabelSettings" id="LabelSettings_i7fa1"]
 font = ExtResource("1_aoget")
@@ -76,11 +85,23 @@ theme_override_constants/separation = 30
 [node name="PlayButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
 z_index = 100
 layout_mode = 2
-scene_to_go = ExtResource("4_jqheb")
+scene_to_go = ExtResource("4_ldshs")
 
 [node name="Label" parent="MarginContainer/VBoxContainer/PlayButton" index="0"]
 text = "Play
 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
+z_index = 100
+layout_mode = 2
+scene_to_go = ExtResource("5_tqjrm")
+
+[node name="Label" parent="MarginContainer/VBoxContainer/OptionsButton" index="0"]
+text = "Options
+"
+label_settings = SubResource("LabelSettings_13pe8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -120,9 +141,11 @@ stream = ExtResource("6_n5wl7")
 autoplay = true
 
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PlayButton" to="MarginContainer/VBoxContainer/PlayButton" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/OptionsButton" to="MarginContainer/VBoxContainer/OptionsButton" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/CreditsButton" to="MarginContainer/VBoxContainer/CreditsButton" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/ExitButton" to="MarginContainer/VBoxContainer/ExitButton" method="_on_mouse_entered"]
 
 [editable path="MarginContainer/VBoxContainer/PlayButton"]
+[editable path="MarginContainer/VBoxContainer/OptionsButton"]
 [editable path="MarginContainer/VBoxContainer/CreditsButton"]
 [editable path="MarginContainer/VBoxContainer/ExitButton"]

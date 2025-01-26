@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdnv8qh0u86w7"]
+
+[ext_resource type="PackedScene" uid="uid://b6gworptkrewx" path="res://Scenes/Entity/health_bar.tscn" id="1_k3loe"]
+[ext_resource type="Texture2D" uid="uid://qn7rk18llhca" path="res://Assets/other/bar_color_progress_player.png" id="2_2d1j2"]
+[ext_resource type="FontFile" uid="uid://dhl8k17180qpo" path="res://Assets/fonts/PixelOperator8.ttf" id="3_8fm8s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7kjia"]
+font = ExtResource("3_8fm8s")
+font_size = 24
+
+[node name="PlayerHealthBar" instance=ExtResource("1_k3loe")]
+
+[node name="TextureProgressBar" parent="." index="0"]
+texture_under = ExtResource("2_2d1j2")
+texture_progress = ExtResource("2_2d1j2")
+
+[node name="Label" parent="TextureProgressBar/MarginContainer" index="0"]
+label_settings = SubResource("LabelSettings_7kjia")

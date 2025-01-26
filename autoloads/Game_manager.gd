@@ -1,9 +1,12 @@
 extends Node
 
+
 const GAME_OVER = preload("res://Scenes/Level/game_over.tscn")
 const LEVEL = preload("res://Scenes/Level/level.tscn")
 const MAIN_MENU = preload("res://Scenes/UI/main_menu.tscn")
 const MAGE_LEVEL = preload("res://Scenes/Level/mage_level.tscn")
+const THANKS_FOR_PLAYING = preload("res://Scenes/UI/thanks_for_playing.tscn")
+const ZOMBIE_LEVEL = preload("res://Scenes/Level/zombie_level.tscn")
 
 var player: Player 
 
@@ -29,8 +32,10 @@ func on_boss_defeated(enemy: Enemy) -> void:
 	if enemy is ZombieBoss:
 		change_scene(MAGE_LEVEL)
 	elif enemy is MageBoss:
-		change_main_scene()
+		change_scene(THANKS_FOR_PLAYING)
 	
+
+
 
 func change_scene(scene: PackedScene) -> void:
 	call_deferred("_change_scene", scene)

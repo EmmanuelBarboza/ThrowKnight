@@ -19,6 +19,7 @@ extends Node2D
 
 @export var weapon_rotate_speed: float = 10
 
+@export var disabled: bool = false
 
 
 func _ready() -> void:
@@ -64,7 +65,9 @@ func weapon_movement(delta: float) -> void:
 
 
 func shooting_logic() -> void:
-	if Input.is_action_just_pressed("shoot") and not shooting_delay_timer.time_left:
+	if (Input.is_action_just_pressed("shoot") 
+	and not shooting_delay_timer.time_left
+	and disabled == false):
 		animation_player.play("shoot")
 
 func play_sound() -> void:

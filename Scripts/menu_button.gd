@@ -10,16 +10,21 @@ extends TextureButton
 
 @export var go_to_menu: bool = false
 
+@export var go_to_options: bool = false
+
 func _on_pressed() -> void:
-	
-	if go_to_menu:
-		GameManager.change_main_scene()
-		return
 	
 	if scene_to_go != null:
 		GameManager.change_scene(scene_to_go)
+	elif go_to_menu == true:
+		GameManager.change_main_scene()
+	elif go_to_options:
+		pass
 	else:
 		GameManager.exit_game()
+	
+
+
 
 
 func _on_mouse_entered() -> void:

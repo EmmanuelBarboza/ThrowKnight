@@ -1,7 +1,7 @@
 class_name Enemy
 extends Entity
 
-@onready var health_bar: Control = $HealthBar
+@onready var health_bar: ProgressBar = $HealthBar
 
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
@@ -26,7 +26,7 @@ func _ready() -> void:
 
 func health_setup() -> void:
 	health = max_health
-	health_bar.setup(max_health)
+	health_bar.init_health(max_health)
 	print("done")
 
 func _process(_delta: float) -> void:
@@ -97,7 +97,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 func update_ui(_health: float) -> void:
 	health_bar.update_health(_health)
 
-func shader_logic(entity: Entity) -> void:
+func shader_logic(_entity: Entity) -> void:
 	var tween = create_tween()
 	tween.tween_method(shader_blink, 1.0,0.0, 0.5)
 

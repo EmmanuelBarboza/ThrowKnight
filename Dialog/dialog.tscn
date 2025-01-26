@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://ca2old38a3rcr"]
+
+[ext_resource type="Script" path="res://Scripts/dialog.gd" id="1_5cbot"]
+[ext_resource type="Texture2D" uid="uid://ct0esenuo2xro" path="res://Assets/other/dialog_texture.png" id="1_t5a06"]
+[ext_resource type="FontFile" uid="uid://qk0a2b13qa8a" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_wtfy3"]
+[ext_resource type="FontFile" uid="uid://dhl8k17180qpo" path="res://Assets/fonts/PixelOperator8.ttf" id="4_va138"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qjfdi"]
+font = ExtResource("3_wtfy3")
+font_size = 8
+
+[node name="Dialog" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5cbot")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -96.0
+offset_top = -83.0
+offset_right = 97.0
+texture = ExtResource("1_t5a06")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Name" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_right = 617.0
+offset_bottom = 21.0
+scale = Vector2(0.3, 0.3)
+theme_override_fonts/normal_font = ExtResource("3_wtfy3")
+text = "Name"
+scroll_active = false
+
+[node name="Text" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 192.0
+offset_bottom = 89.0
+scale = Vector2(0.8, 0.8)
+theme_override_fonts/normal_font = ExtResource("4_va138")
+text = "Chat"
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 82.0
+offset_right = 196.0
+offset_bottom = 105.0
+text = "C to continue"
+label_settings = SubResource("LabelSettings_qjfdi")

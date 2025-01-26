@@ -10,7 +10,7 @@ script = ExtResource("2_8eke4")
 speed_mult = 300.0
 spins = false
 slow_spawn = true
-ammount_bounces = 1
+ammount_bounces = 4
 
 [node name="Sprite2D" parent="." index="1"]
 rotation = 1.5708

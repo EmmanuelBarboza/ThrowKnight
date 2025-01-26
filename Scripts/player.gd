@@ -19,14 +19,15 @@ var current_weapon_index: int = 0
 
 #const SWORD: PackedScene = preload("res://Scenes/Weapons/sword.tscn")
 #const AXE: PackedScene = preload("res://Scenes/Weapons/axe.tscn")
-@onready var health_bar: Control = $CanvasLayer/UI/HealthBar
+@onready var health_bar: ProgressBar = $CanvasLayer/UI/HealthBar
+
 
 var pause_state : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health = max_health
-	health_bar.setup(max_health)
+	health_bar.init_health(max_health)
 	animation_player.play("idle")
 	set_weapon(0)
 	SignalManager.on_player_ready.emit(self)
@@ -41,7 +42,7 @@ func _process(delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_key_pressed(KEY_ENTER):
-		die()
+		take_damage(20)
 	
 	
 
@@ -122,7 +123,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	
 
 func update_ui(_health: float) -> void:
-	health_bar.update_health(_health)
+	health_bar.health = _health
 
 
 func _on_timer_timeout() -> void:

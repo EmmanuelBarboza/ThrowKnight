@@ -68,18 +68,18 @@ MOMONGA
 label_settings = ExtResource("3_sh0ib")
 horizontal_alignment = 1
 
-[node name="PlayButton" parent="MarginContainer" instance=ExtResource("4_ef0yq")]
+[node name="MenuButton" parent="MarginContainer" instance=ExtResource("4_ef0yq")]
 z_index = 100
 layout_mode = 2
 size_flags_vertical = 8
 go_to_menu = true
 
-[node name="Label" parent="MarginContainer/PlayButton" index="0"]
+[node name="Label" parent="MarginContainer/MenuButton" index="0"]
 text = "Back
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="mouse_entered" from="MarginContainer/PlayButton" to="MarginContainer/PlayButton" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/MenuButton" to="MarginContainer/MenuButton" method="_on_mouse_entered"]
 
-[editable path="MarginContainer/PlayButton"]
+[editable path="MarginContainer/MenuButton"]

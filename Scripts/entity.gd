@@ -37,16 +37,16 @@ var squash_and_stretch := 1.0:
 		animated_sprite.scale = Vector2(1, squash_and_stretch)
 
 func take_damage(damage: float) -> void:
-	print("TAKE DAMAGE: ", self , " AMMOUNT: ", damage)
+	#print("TAKE DAMAGE: ", self , " AMMOUNT: ", damage)
+	
 	shader_logic(self)
 	if hit_sound != null:
 		hit_sound.play()
-	
 	do_squash_and_stretch(1.4,0.08)
 	health -= damage
 	
 
-func shader_logic(entity: Entity) -> void:
+func shader_logic(_entity: Entity) -> void:
 	pass
 
 func heal(heal_ammount: float) -> void:

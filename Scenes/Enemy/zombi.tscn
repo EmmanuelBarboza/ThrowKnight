@@ -102,3 +102,5 @@ draw_order = 0
 
 [connection signal="timeout" from="Timers/BasicAttackTimer" to="." method="shoot_basic"]
 [connection signal="timeout" from="Timers/TrailAttackTimer" to="." method="acid_floor"]
+
+[editable path="HealthBar"]

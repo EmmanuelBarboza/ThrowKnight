@@ -1,3 +1,4 @@
+class_name PlayerCamera
 extends Camera2D
 
 @export var speed_x: float = 200
@@ -5,18 +6,30 @@ extends Camera2D
 
 var cameraShakeNoise: FastNoiseLite
 
+static var is_dynamic: bool = true 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	cameraShakeNoise = FastNoiseLite.new()
+	
+	if is_dynamic == false:
+		position_smoothing_enabled = false
 
 func start_camera_shake(intensity: float) -> void:
+	
+	if is_dynamic == false:
+		offset.x = 0
+		offset.y = 0
+	
 	var cameraOffset = cameraShakeNoise.get_noise_1d(Time.get_ticks_msec()) * intensity
 	offset.x += cameraOffset
 	offset.y += cameraOffset
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	follow_mouse() 
+	if is_dynamic:
+		follow_mouse() 
 
 
 func follow_mouse() -> void:

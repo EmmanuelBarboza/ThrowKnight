@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://cepacky6h6hi3"]
+
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="1_i4ptj"]
+[ext_resource type="Script" path="res://Scripts/npc.gd" id="1_iml75"]
+[ext_resource type="PackedScene" uid="uid://ca2old38a3rcr" path="res://Dialog/dialog.tscn" id="3_mdyju"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hrnd"]
+atlas = ExtResource("1_i4ptj")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78eo5"]
+atlas = ExtResource("1_i4ptj")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw6vq"]
+atlas = ExtResource("1_i4ptj")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vehmr"]
+atlas = ExtResource("1_i4ptj")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kxwtb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hrnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78eo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw6vq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vehmr")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_crsl6"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4h7wu"]
+radius = 24.0832
+
+[node name="Npc" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_iml75")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kxwtb")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.14257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_crsl6")
+
+[node name="ChatDetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChatDetectionArea"]
+shape = SubResource("CircleShape2D_4h7wu")
+debug_color = Color(0.744889, 0.457776, 0.196984, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Dialog" parent="." instance=ExtResource("3_mdyju")]
+offset_top = -13.0
+offset_bottom = -13.0
+
+[connection signal="body_entered" from="ChatDetectionArea" to="." method="_on_chat_detection_area_body_entered"]
+[connection signal="body_exited" from="ChatDetectionArea" to="." method="_on_chat_detection_area_body_exited"]
+[connection signal="dialogue_finished" from="Dialog" to="." method="_on_dialog_dialogue_finished"]

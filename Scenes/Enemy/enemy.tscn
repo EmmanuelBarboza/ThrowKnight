@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhfnfgd0h8csx"]
+[gd_scene load_steps=9 format=3 uid="uid://dhfnfgd0h8csx"]
 
 [ext_resource type="Shader" path="res://Scripts/enemy.gdshader" id="1_ij632"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_k0i7i"]
 [ext_resource type="PackedScene" uid="uid://cvp3k4pb4jvey" path="res://Scenes/Entity/hitbox.tscn" id="2_mcea3"]
-[ext_resource type="PackedScene" uid="uid://b6gworptkrewx" path="res://Scenes/Entity/health_bar.tscn" id="3_7h0kw"]
+[ext_resource type="PackedScene" uid="uid://n4vu54hm2yb4" path="res://Scenes/UI/health_bar.tscn" id="4_hlm82"]
+[ext_resource type="StyleBox" uid="uid://c185tdi1s7xqk" path="res://Scenes/UI/enemy_style_box_flat.tres" id="5_4a5m3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r7hgl"]
 shader = ExtResource("1_ij632")
@@ -40,6 +41,11 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "DEBUG"
 
-[node name="HealthBar" parent="." instance=ExtResource("3_7h0kw")]
+[node name="HealthBar" parent="." instance=ExtResource("4_hlm82")]
+offset_left = -33.0
+offset_top = 14.0
+offset_right = 33.0
+offset_bottom = 22.0
+theme_override_styles/fill = ExtResource("5_4a5m3")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
