@@ -8,6 +8,7 @@
 [node name="Sword" instance=ExtResource("1_aldf2")]
 script = ExtResource("2_2erlt")
 projectile = ExtResource("3_l5noe")
+rotation_threshold = 25.0
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_d7f16")

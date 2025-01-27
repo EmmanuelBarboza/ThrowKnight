@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://do05fijf8kho1"]
+[gd_scene load_steps=14 format=3 uid="uid://do05fijf8kho1"]
 
 [ext_resource type="Script" path="res://Scripts/proyectile.gd" id="1_c0jaj"]
 
@@ -183,6 +183,43 @@ _data = {
 "spawn": SubResource("Animation_rgft3")
 }
 
+[sub_resource type="Curve" id="Curve_bi7f5"]
+_data = [Vector2(0.00267379, 1), 0.0, 0.0, 0, 0, Vector2(0.949198, 0.516483), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gmd4m"]
+curve = SubResource("Curve_bi7f5")
+
+[sub_resource type="Gradient" id="Gradient_mvrgp"]
+offsets = PackedFloat32Array(0.0131579, 1)
+colors = PackedColorArray(1, 1, 0, 1, 0.380392, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ef6ob"]
+gradient = SubResource("Gradient_mvrgp")
+
+[sub_resource type="Curve" id="Curve_am3t5"]
+max_value = 10.0
+_data = [Vector2(0.0294118, 3.23077), 0.0, 0.0, 0, 0, Vector2(1, 6.13187), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iiu7g"]
+curve = SubResource("Curve_am3t5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wff5a"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 27.44
+initial_velocity_max = 95.37
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_iiu7g")
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_ef6ob")
+alpha_curve = SubResource("CurveTexture_gmd4m")
+
 [node name="Projectile" type="Area2D"]
 collision_layer = 16
 script = ExtResource("1_c0jaj")
@@ -206,6 +243,11 @@ visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "DEBUG"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_wff5a")
+randomness = 0.37
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

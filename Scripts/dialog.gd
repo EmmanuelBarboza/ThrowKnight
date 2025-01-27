@@ -6,6 +6,7 @@ extends Control
 @onready var name_text: RichTextLabel = $NinePatchRect/Name
 @onready var text: RichTextLabel = $NinePatchRect/Text
 
+@warning_ignore("unused_signal")
 signal dialogue_finished
 var dialogue = []
 var current_dialog_id = 0

@@ -42,6 +42,9 @@ func take_damage(damage: float) -> void:
 	shader_logic(self)
 	if hit_sound != null:
 		hit_sound.play()
+		
+		print(self)
+		
 	do_squash_and_stretch(1.4,0.08)
 	health -= damage
 	

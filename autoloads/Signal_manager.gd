@@ -8,3 +8,5 @@ signal on_pause_pressed(value: bool)
 signal on_player_ready(player: Player)
 @warning_ignore("unused_signal")
 signal on_boss_defeated(enemy: Enemy)
+@warning_ignore("unused_signal")
+signal  on_quick_spin

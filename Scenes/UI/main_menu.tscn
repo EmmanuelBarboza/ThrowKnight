@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://b7mavgvpnxxui" path="res://Scenes/UI/inst.tres" id="2_0kj1t"]
 [ext_resource type="PackedScene" uid="uid://djuhlk681gky5" path="res://Scenes/UI/menu_button.tscn" id="2_hqy13"]
 [ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="2_qlwdy"]
-[ext_resource type="PackedScene" uid="uid://d34wainl4i821" path="res://Scenes/Level/Entrance.tscn" id="4_ldshs"]
+[ext_resource type="PackedScene" uid="uid://d34wainl4i821" path="res://Scenes/Level/Entrance.tscn" id="4_lpv70"]
 [ext_resource type="PackedScene" uid="uid://xdvb3x407joh" path="res://Scenes/UI/options_menu.tscn" id="5_tqjrm"]
 [ext_resource type="PackedScene" uid="uid://tsjrixc436s4" path="res://Scenes/UI/credits.tscn" id="6_4kil2"]
 [ext_resource type="AudioStream" uid="uid://wed7p255g6tv" path="res://Assets/sounds/FamilyBuisness.mp3" id="6_n5wl7"]
@@ -85,7 +85,7 @@ theme_override_constants/separation = 30
 [node name="PlayButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
 z_index = 100
 layout_mode = 2
-scene_to_go = ExtResource("4_ldshs")
+scene_to_go = ExtResource("4_lpv70")
 
 [node name="Label" parent="MarginContainer/VBoxContainer/PlayButton" index="0"]
 text = "Play

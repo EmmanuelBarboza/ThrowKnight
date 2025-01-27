@@ -7,6 +7,7 @@ extends Area2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 
 
 @export_group("Movement") #MOVEMENT RELATED VARIABLES
@@ -34,12 +35,22 @@ var following_marker: Marker2D
 @export var is_bouncy: bool = false 
 #The ammount of bounces the projectiles does before despawn
 @export var ammount_bounces: int = 0
+#
+@export var is_boosted : bool = false
 
+
+func  _ready() -> void:
+	if is_boosted:
+		gpu_particles_2d.emitting = true
+	else:
+		gpu_particles_2d.emitting = false
 
 #This function controlls the movement of the projectile
 func movement(delta: float) -> void:
 	
 	update_position_to_marker()
+	if is_boosted:
+		gpu_particles_2d.emitting = true
 	
 	if slow_spawn:
 		animation_player.play("spawn")
@@ -57,6 +68,7 @@ func move_projectile(delta: float) -> void:
 			spin_logic(delta)
 		#Moves the projectile on a straight line
 		global_position += transform.x * speed_mult * delta 
+		
 		
 
 func update_rotation_to_player() -> void:

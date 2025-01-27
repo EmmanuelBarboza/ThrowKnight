@@ -27,7 +27,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
-text = "Thanks for plating!
+text = "Thanks for playing!
 
 More content coming soon
 

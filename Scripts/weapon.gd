@@ -3,6 +3,7 @@ class_name Weapon
 extends Node2D
 
 #Esta clase es una plantilla para el resto de armas si es que implemento mas
+@onready var boost_shoot_sound: AudioStreamPlayer2D = $BoostShootSound
 
 
 @onready var marker: Marker2D = $Marker2D
@@ -22,8 +23,37 @@ extends Node2D
 @export var disabled: bool = false
 
 
+var previous_rotation: float = 0.0
+var angular_velocity: float = 0.0
+@export var damage_multiplier: float = 2.0
+@export var rotation_threshold: float = 30.0  # Velocidad mínima para aumentar daño
+
+var next_shoot_boosted : bool = false
+
 func _ready() -> void:
 	animation_player.play("RESET")
+
+func  _process(delta: float) -> void:
+	calculate_angular_velocity(delta)
+
+func toggle_next_shot_boosted(value: bool) -> void:
+	next_shoot_boosted = value
+
+func calculate_angular_velocity(delta: float) -> void:
+	if next_shoot_boosted == true:
+		return
+	
+	angular_velocity = abs(rotation - previous_rotation) / delta
+	previous_rotation = rotation
+	
+	
+	
+	if angular_velocity > rotation_threshold:
+		print("Boosted ", angular_velocity)
+		next_shoot_boosted = true
+		boost_shoot_sound.play()
+		sprite.material.set_shader_parameter("blink_intensity", 1)
+
 
 
 #Esta funcion devuelve el marcador, usado en el arma para la posicion inical del 
@@ -77,6 +107,13 @@ func shoot() -> void:
 		var new_proyectile: Projectile = get_weapon_projectile().instantiate()
 		new_proyectile.global_position = get_shooting_marker().global_position
 		new_proyectile.rotation = rotation
+		
+		if new_proyectile.is_in_group("player_projectile") and next_shoot_boosted:
+			new_proyectile.base_damage *=  damage_multiplier
+			new_proyectile.is_boosted = true
+			print("Boosted shot")
+			sprite.material.set_shader_parameter("blink_intensity", 0)
+		
 		GameManager._spawn_projectile(new_proyectile)
 		shooting_delay_timer.start()
 		animation_player.play("RESET")

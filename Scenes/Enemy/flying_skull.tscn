@@ -48,11 +48,12 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="FlyingSkull" instance=ExtResource("1_vllfm")]
+[node name="FlyingSkull" node_paths=PackedStringArray("hit_sound") instance=ExtResource("1_vllfm")]
 use_parent_material = true
 script = ExtResource("2_qmqsr")
 move_speed = 200
 max_health = 700.0
+hit_sound = NodePath("Sounds/HitSound")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_72v6t")

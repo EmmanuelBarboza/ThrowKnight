@@ -59,7 +59,7 @@ phase_1_treshold = 6000.0
 phase_2_treshold = 3000.0
 phase_3_treshold = 1500.0
 move_speed = 30
-max_health = 10000.0
+max_health = 1.0
 hit_sound = NodePath("Sounds/HitSound")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

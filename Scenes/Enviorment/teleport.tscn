@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://chaghorxx331x"]
+
+[ext_resource type="Script" path="res://Scripts/teleport.gd" id="1_gj5g7"]
+[ext_resource type="Texture2D" uid="uid://dx6u044au3uw5" path="res://Assets/other/Tileset-export.png" id="1_r8pmk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yd1j4"]
+radius = 6.0
+
+[node name="Teleport" type="Area2D"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_gj5g7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_r8pmk")
+region_enabled = true
+region_rect = Rect2(175, 47, 17, 17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yd1j4")
+disabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
