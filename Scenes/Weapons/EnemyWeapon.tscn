@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckt3r4igs410"]
+
+[ext_resource type="PackedScene" uid="uid://da83m0hii4cb4" path="res://Scenes/Weapons/weapon.tscn" id="1_vgjej"]
+[ext_resource type="Script" path="res://Scripts/EnemyWeapon.gd" id="2_lb1yx"]
+
+[node name="EnemyWeapon" instance=ExtResource("1_vgjej")]
+script = ExtResource("2_lb1yx")
+boost_treshold = 5
+rotation_threshold = 30.0
+
+[node name="ShootingDelayTimer" parent="." index="3"]
+wait_time = 1.4

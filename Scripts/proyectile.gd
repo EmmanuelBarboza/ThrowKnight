@@ -9,6 +9,12 @@ extends Area2D
 
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 
+@onready var despawn_sound: AudioStreamPlayer2D = $DespawnSound
+
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+
+@onready var despawn_timer: Timer = $DespawnTimer
+
 
 @export_group("Movement") #MOVEMENT RELATED VARIABLES
 #The velocity at which the projectile travels
@@ -38,12 +44,18 @@ var following_marker: Marker2D
 #
 @export var is_boosted : bool = false
 
+@export var can_damage: bool = true 
 
 func  _ready() -> void:
 	if is_boosted:
 		gpu_particles_2d.emitting = true
+		sprite_2d.material.set_shader_parameter("blink_intensity", 1)
 	else:
 		gpu_particles_2d.emitting = false
+	
+	if can_damage == false:
+		collision_shape.disabled = true
+	
 
 #This function controlls the movement of the projectile
 func movement(delta: float) -> void:
@@ -75,7 +87,7 @@ func update_rotation_to_player() -> void:
 	rotation = (GameManager.player.position - position).angle()
 
 func update_position_to_marker() -> void:
-	if follow_marker:
+	if follow_marker and following_marker != null:
 		position = following_marker.global_position
 
 #This function rotates the sprite of the weapon
@@ -97,11 +109,21 @@ func bounce_wall() -> void:
 func toggle_can_move(value: bool) -> void:
 	can_move = value
 
+func toggle_can_damage(value: bool) -> void:
+	can_damage =  value
+	collision_shape.disabled = not value
+
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	despawn()
+	despawn_timer.start()
+
+func is_on_screen() -> void:
+	if visible_on_screen.is_on_screen() == false:
+		print("Despawning out of screen")
+		despawn()
 
 func despawn() -> void:
 	animation_player.play("despawn")
+
 
 func _on_body_entered(body: Node2D) -> void:
 	#If the body is not an entity, it means is a wall/obstacle

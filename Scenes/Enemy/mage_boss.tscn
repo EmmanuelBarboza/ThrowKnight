@@ -90,7 +90,7 @@ script = ExtResource("2_c2ybj")
 follow_radius = 1200.0
 phase_1_treshold = 6000.0
 move_speed = 25
-max_health = 9000.0
+max_health = 12000.0
 hit_sound = NodePath("Sounds/HitSound")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

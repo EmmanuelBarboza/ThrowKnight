@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://dx6gxr44lhbos"]
+
+[ext_resource type="PackedScene" uid="uid://do05fijf8kho1" path="res://Scenes/Weapons/projectile.tscn" id="1_l2qlb"]
+[ext_resource type="Texture2D" uid="uid://33l8yrpfwo0c" path="res://Assets/other/MaceSpike.png" id="2_efctd"]
+[ext_resource type="Script" path="res://Scripts/mace_spike.gd" id="2_k774l"]
+
+[sub_resource type="Shader" id="Shader_dnjqf"]
+code = "shader_type canvas_item;
+uniform vec4 blink_color: source_color;
+uniform float blink_intensity = 0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color = mix(color, blink_color, blink_intensity  * color.a);
+	
+	COLOR = color;
+}
+
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tyi6o"]
+resource_local_to_scene = true
+shader = SubResource("Shader_dnjqf")
+shader_parameter/blink_color = Color(1, 0, 0, 0.462745)
+shader_parameter/blink_intensity = 0.0
+
+[node name="MaceSpike" groups=["enemy_projectile"] instance=ExtResource("1_l2qlb")]
+script = ExtResource("2_k774l")
+speed_mult = 250.0
+spins = false
+can_damage = false
+
+[node name="Sprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_tyi6o")
+rotation = 1.5708
+texture = ExtResource("2_efctd")
+
+[node name="GPUParticles2D" parent="." index="5"]
+emitting = false
+
+[node name="Timer" type="Timer" parent="." index="7"]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -7,6 +7,7 @@ const MAIN_MENU = preload("res://Scenes/UI/main_menu.tscn")
 const MAGE_LEVEL = preload("res://Scenes/Level/mage_level.tscn")
 const THANKS_FOR_PLAYING = preload("res://Scenes/UI/thanks_for_playing.tscn")
 const ZOMBIE_LEVEL = preload("res://Scenes/Level/zombie_level.tscn")
+const ORC_BOSS_LEVEL = preload("res://Scenes/Level/OrcBoss_Level.tscn")
 
 var player: Player 
 
@@ -32,8 +33,9 @@ func on_boss_defeated(enemy: Enemy) -> void:
 	if enemy is ZombieBoss:
 		change_scene(MAGE_LEVEL)
 	elif enemy is MageBoss:
+		change_scene(load("res://Scenes/Level/OrcBoss_Level.tscn"))
+	elif  enemy is OrcBoss:
 		change_scene(THANKS_FOR_PLAYING)
-	
 
 
 
@@ -55,6 +57,9 @@ func spawn_projectile(projectile: Projectile, start_pos: Vector2) -> void:
 	get_tree().root.get_node("Level").get_node("ProjectileContainer").add_child(projectile)
 
 func _spawn_projectile(projectile: Projectile) -> void:
+	call_deferred("_spawn_projectile_deffered", projectile)
+
+func _spawn_projectile_deffered(projectile: Projectile) -> void:
 	get_tree().root.get_node("Level").get_node("ProjectileContainer").add_child(projectile)
 
 func spawn_trail(trail_new: trail) -> void:

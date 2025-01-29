@@ -98,7 +98,7 @@ func  move_logic(_delta: float) -> void:
 
 func shader_logic(_entity: Entity) -> void:
 	var tween = create_tween()
-	tween.tween_method(camera_2d.start_camera_shake, 5.0, 1.0, 0.5)
+	tween.tween_method(camera_2d.start_camera_shake, 25.0, 1.0, 0.5)
 
 func die() -> void:
 	Engine.time_scale = 0.5

@@ -1,10 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2lict1sipyhk"]
+[gd_scene load_steps=8 format=3 uid="uid://c2lict1sipyhk"]
 
 [ext_resource type="PackedScene" uid="uid://do05fijf8kho1" path="res://Scenes/Weapons/projectile.tscn" id="1_22wqn"]
 [ext_resource type="Script" path="res://Scripts/axe_projectile.gd" id="2_hemb6"]
+[ext_resource type="Shader" path="res://Scenes/Weapons/weapon.gdshader" id="2_knm6x"]
 [ext_resource type="Texture2D" uid="uid://btnjjh2cy3rh7" path="res://Scenes/Weapons/axe.tres" id="3_bo2g1"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1l77l"]
+shader = ExtResource("2_knm6x")
+shader_parameter/blink_color = Color(0.92549, 0, 0, 0.764706)
+shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="Shader" id="Shader_6bum5"]
+code = "shader_type canvas_item;
+uniform vec4 blink_color: source_color;
+uniform float blink_intensity = 0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color = mix(color, blink_color, blink_intensity  * color.a);
+	
+	COLOR = color;
+}
+
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bd6cn"]
+shader = SubResource("Shader_6bum5")
+shader_parameter/blink_color = Color(1, 0, 0, 0.462745)
+shader_parameter/blink_intensity = 0.0
+
 [node name="axe_projectile" groups=["player_projectile"] instance=ExtResource("1_22wqn")]
+material = SubResource("ShaderMaterial_1l77l")
 rotation = -0.000364495
 script = ExtResource("2_hemb6")
 speed_mult = 200.0
@@ -16,6 +43,7 @@ penetration = 10
 z_index = 1
 
 [node name="Sprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_bd6cn")
 texture = ExtResource("3_bo2g1")
 region_enabled = true
 region_rect = Rect2(144, 103, 16, 24)

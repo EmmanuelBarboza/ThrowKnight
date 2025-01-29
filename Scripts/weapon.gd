@@ -34,6 +34,7 @@ func _ready() -> void:
 	animation_player.play("RESET")
 
 func  _process(delta: float) -> void:
+	
 	calculate_angular_velocity(delta)
 
 func toggle_next_shot_boosted(value: bool) -> void:

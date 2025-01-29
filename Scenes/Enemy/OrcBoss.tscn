@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://5ufqo3qfahsx"]
+
+[ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_03hol"]
+[ext_resource type="Texture2D" uid="uid://sn717ehmfyyw" path="res://Assets/other/OrcBoss.png" id="2_6b6ns"]
+[ext_resource type="Script" path="res://Scenes/Enemy/orc_boss.gd" id="2_nsr7h"]
+[ext_resource type="AudioStream" uid="uid://dyqtnum1bm1i4" path="res://Assets/sounds/UltraHeavyhitHurt.wav" id="5_7k0wr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg7gf"]
+atlas = ExtResource("2_6b6ns")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydu7n"]
+atlas = ExtResource("2_6b6ns")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxwwp"]
+atlas = ExtResource("2_6b6ns")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr2m0"]
+atlas = ExtResource("2_6b6ns")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5dgx"]
+atlas = ExtResource("2_6b6ns")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aouc3"]
+atlas = ExtResource("2_6b6ns")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quxia"]
+atlas = ExtResource("2_6b6ns")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3av4c"]
+atlas = ExtResource("2_6b6ns")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0el1b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rg7gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydu7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxwwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr2m0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5dgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aouc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quxia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3av4c")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[node name="OrcBoss" node_paths=PackedStringArray("hit_sound") instance=ExtResource("1_03hol")]
+script = ExtResource("2_nsr7h")
+follow_radius = 1200.0
+move_speed = 25
+max_health = 20000.0
+hit_sound = NodePath("Sounds/HitSound")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_0el1b")
+animation = &"Idle"
+
+[node name="Sounds" type="Node" parent="." index="5"]
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
+stream = ExtResource("5_7k0wr")
