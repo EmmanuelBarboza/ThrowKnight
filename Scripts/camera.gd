@@ -6,7 +6,7 @@ extends Camera2D
 
 var cameraShakeNoise: FastNoiseLite
 
-static var is_dynamic: bool = true 
+static var is_dynamic: bool = false 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

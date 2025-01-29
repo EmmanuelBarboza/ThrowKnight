@@ -14,6 +14,10 @@ background_mode = 3
 glow_enabled = true
 glow_strength = 1.2
 glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_contrast = 1.2
+adjustment_saturation = 1.5
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ongak"]
 texture = ExtResource("3_6k8em")

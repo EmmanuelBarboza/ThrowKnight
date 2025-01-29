@@ -25,6 +25,7 @@ shader_parameter/blink_color = Color(1, 0, 0, 0.462745)
 shader_parameter/blink_intensity = 0.0
 
 [node name="sword_projectile" groups=["player_projectile"] instance=ExtResource("1_t21de")]
+collision_mask = 17
 script = ExtResource("2_yvqj5")
 speed_mult = 200.0
 spin_speed = 1200.0

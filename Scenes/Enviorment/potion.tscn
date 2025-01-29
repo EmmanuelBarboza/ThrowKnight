@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcjuobvj4m8o"]
+[gd_scene load_steps=23 format=3 uid="uid://bcjuobvj4m8o"]
 
 [ext_resource type="Script" path="res://Scripts/potion.gd" id="1_yw6od"]
 [ext_resource type="Texture2D" uid="uid://cjukdlqba6lxw" path="res://Assets/other/Potion.png" id="2_2spb6"]
+[ext_resource type="AudioStream" uid="uid://dlx1siqr5i3im" path="res://Assets/sounds/Heal2.wav" id="3_xc6ng"]
+[ext_resource type="Texture2D" uid="uid://m0eufsu5fsnx" path="res://Assets/other/heal_particle.png" id="4_g41qx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfqrj"]
 atlas = ExtResource("2_2spb6")
@@ -42,6 +44,173 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_07cfj"]
 radius = 6.0
 
+[sub_resource type="Curve" id="Curve_xwsc6"]
+_data = [Vector2(0.00267379, 1), 0.0, 0.0, 0, 0, Vector2(0.949198, 0.516483), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gmd4m"]
+curve = SubResource("Curve_xwsc6")
+
+[sub_resource type="Gradient" id="Gradient_b8kxo"]
+offsets = PackedFloat32Array(0.0131579, 0.572368, 1)
+colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ef6ob"]
+gradient = SubResource("Gradient_b8kxo")
+
+[sub_resource type="Curve" id="Curve_u34d4"]
+max_value = 10.0
+_data = [Vector2(0.0294118, 1.2967), 0.0, 0.0, 0, 0, Vector2(0.965241, 4.10989), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iiu7g"]
+curve = SubResource("Curve_u34d4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cuxoe"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+spread = 180.0
+initial_velocity_min = 27.44
+initial_velocity_max = 95.37
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_iiu7g")
+color_ramp = SubResource("GradientTexture1D_ef6ob")
+alpha_curve = SubResource("CurveTexture_gmd4m")
+
+[sub_resource type="Animation" id="Animation_ugt4j"]
+resource_name = "despawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.966667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PointLight2D:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sl4lw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qiyuj"]
+_data = {
+"RESET": SubResource("Animation_sl4lw"),
+"despawn": SubResource("Animation_ugt4j")
+}
+
+[sub_resource type="Gradient" id="Gradient_hv6gw"]
+offsets = PackedFloat32Array(0, 0.71875, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.0416667, 0.0416667, 0.0416667, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_51y6n"]
+gradient = SubResource("Gradient_hv6gw")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Potion" type="Area2D"]
 collision_layer = 0
 collision_mask = 2
@@ -54,5 +223,24 @@ frame_progress = 0.716487
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_07cfj")
+
+[node name="EffectSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xc6ng")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_cuxoe")
+texture = ExtResource("4_g41qx")
+one_shot = true
+randomness = 0.37
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qiyuj")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.655879, 0.655849, 0.142674, 1)
+texture = SubResource("GradientTexture2D_51y6n")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

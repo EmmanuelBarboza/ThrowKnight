@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfm1ve67fnfgf"]
+
+[ext_resource type="PackedScene" uid="uid://da83m0hii4cb4" path="res://Scenes/Weapons/weapon.tscn" id="1_mg7fd"]
+[ext_resource type="Script" path="res://Scripts/hammer.gd" id="2_bnl3m"]
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_f2yn7"]
+[ext_resource type="PackedScene" uid="uid://cd0t4ogq4bknm" path="res://Scenes/Weapons/hammer_projectile.tscn" id="3_hed0w"]
+
+[node name="Hammer" instance=ExtResource("1_mg7fd")]
+script = ExtResource("2_bnl3m")
+projectile = ExtResource("3_hed0w")
+rotation_threshold = 30.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_f2yn7")
+region_rect = Rect2(179, 3, 10, 24)

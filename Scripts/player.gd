@@ -15,7 +15,11 @@ var current_weapon_index: int = 0
 @export var weapon: Weapon
 
 
-@export var weapon_scenes: Array = [preload("res://Scenes/Weapons/sword.tscn"), preload("res://Scenes/Weapons/axe.tscn")]
+@export var weapon_scenes: Array = [
+	preload("res://Scenes/Weapons/sword.tscn"),
+	 preload("res://Scenes/Weapons/axe.tscn"),
+	preload("res://Scenes/Weapons/heavy_sword.tscn"),
+	preload("res://Scenes/Weapons/hammer.tscn")]
 
 #const SWORD: PackedScene = preload("res://Scenes/Weapons/sword.tscn")
 #const AXE: PackedScene = preload("res://Scenes/Weapons/axe.tscn")

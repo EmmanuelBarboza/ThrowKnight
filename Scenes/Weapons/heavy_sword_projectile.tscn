@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm7kd336dxm24"]
+
+[ext_resource type="PackedScene" uid="uid://do05fijf8kho1" path="res://Scenes/Weapons/projectile.tscn" id="1_jvtcl"]
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_drk3x"]
+[ext_resource type="Script" path="res://Scripts/heavy_sword_projectile.gd" id="2_uj5ud"]
+[ext_resource type="AudioStream" uid="uid://dgf07m4df8ghn" path="res://Assets/sounds/Block.wav" id="4_ftysl"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_birgr"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 15.52
+radial_accel_max = 72.42
+scale_min = 0.0
+scale_max = 4.0
+color = Color(1, 1, 0, 1)
+
+[node name="HeavySwordProjectile" groups=["player_projectile"] instance=ExtResource("1_jvtcl")]
+collision_mask = 17
+script = ExtResource("2_uj5ud")
+speed_mult = 190.0
+spin_speed = 1000.0
+base_damage = 500.0
+penetration = 5
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_drk3x")
+region_enabled = true
+region_rect = Rect2(178, 32, 12, 32)
+
+[node name="GPUParticles2D" parent="." index="5"]
+emitting = false
+
+[node name="BlockParticle" type="GPUParticles2D" parent="." index="8"]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_birgr")
+lifetime = 0.8
+one_shot = true
+speed_scale = 3.64
+explosiveness = 1.0
+
+[node name="BlockSound" type="AudioStreamPlayer2D" parent="." index="9"]
+stream = ExtResource("4_ftysl")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,8 +1,12 @@
 class_name Enemy
 extends Entity
 
+@onready var knock_back_timer: Timer = $KnockBackTimer
+
+
 @onready var health_bar: ProgressBar = $HealthBar
 
+var knockback : Vector2 = Vector2(0,0)
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
 
@@ -23,6 +27,7 @@ var target_direction: Vector2
 
 func _ready() -> void:
 	health_setup()
+	
 
 func health_setup() -> void:
 	health = max_health
@@ -33,6 +38,7 @@ func _process(_delta: float) -> void:
 	
 	movement()
 	move_and_slide()
+	
 
 #label.text = "%.2f , %.2f" % [target_direction.x , target_direction.y]
 
@@ -66,10 +72,14 @@ func follow_player() -> void:
 	
 	#Hacemos que la velocidad vaya hacia el jugador multiplicado con la velocidad
 	if is_on_follow_radius():
-		velocity = target_direction  * move_speed
+		velocity = target_direction  * move_speed + knockback
 	
 	if get_player_distance() < attack_radius:
 		velocity = Vector2.ZERO
+		
+	
+
+
 
 func is_on_follow_radius() -> bool:
 	if get_player_distance() < follow_radius:
@@ -107,3 +117,8 @@ func shader_blink (newValue : float):
 
 func emit_die_signal() -> void:
 	SignalManager.on_boss_defeated.emit(self)
+
+
+func _on_knock_back_timer_timeout() -> void:
+	knockback = Vector2.ZERO
+	print("RESET KNOCKBACK")

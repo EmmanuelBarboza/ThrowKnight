@@ -1,3 +1,4 @@
+#GameManager autoload
 extends Node
 
 
@@ -8,15 +9,19 @@ const MAGE_LEVEL = preload("res://Scenes/Level/mage_level.tscn")
 const THANKS_FOR_PLAYING = preload("res://Scenes/UI/thanks_for_playing.tscn")
 const ZOMBIE_LEVEL = preload("res://Scenes/Level/zombie_level.tscn")
 const ORC_BOSS_LEVEL = preload("res://Scenes/Level/OrcBoss_Level.tscn")
+const COMPLEX_TRANSITION = preload("res://Scenes/UI/complex_transition.tscn")
+
 
 var player: Player 
+
+var next_scene : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.connect("on_player_die",_on_player_die)
 	SignalManager.connect("on_player_ready",_set_player)
 	SignalManager.connect("on_boss_defeated",on_boss_defeated)
-	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	#process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	
 
 func _on_player_die() -> void:
@@ -40,10 +45,13 @@ func on_boss_defeated(enemy: Enemy) -> void:
 
 
 func change_scene(scene: PackedScene) -> void:
+	next_scene = scene
 	call_deferred("_change_scene", scene)
 
 func _change_scene(scene: PackedScene) -> void:
-	get_tree().change_scene_to_packed(scene)
+	
+	var transition = COMPLEX_TRANSITION.instantiate()
+	add_child(transition)
 
 func change_main_scene() -> void:
 	call_deferred("change_scene", MAIN_MENU)

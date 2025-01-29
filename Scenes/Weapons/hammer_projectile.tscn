@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd0t4ogq4bknm"]
+
+[ext_resource type="PackedScene" uid="uid://do05fijf8kho1" path="res://Scenes/Weapons/projectile.tscn" id="1_vgolh"]
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_001a0"]
+[ext_resource type="Script" path="res://Scripts/hammer_projectile.gd" id="2_ckasv"]
+
+[node name="HammerProjectile" groups=["player_projectile"] instance=ExtResource("1_vgolh")]
+collision_mask = 3
+script = ExtResource("2_ckasv")
+speed_mult = 120.0
+spin_speed = 700.0
+base_damage = 250.0
+is_bouncy = true
+ammount_bounces = 1
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_001a0")
+region_enabled = true
+region_rect = Rect2(179, 3, 10, 24)
+
+[node name="GPUParticles2D" parent="." index="5"]
+emitting = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered_knockbac"]

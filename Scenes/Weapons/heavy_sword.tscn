@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh2tln3h2rv0g"]
+
+[ext_resource type="PackedScene" uid="uid://da83m0hii4cb4" path="res://Scenes/Weapons/weapon.tscn" id="1_38gtl"]
+[ext_resource type="Script" path="res://heavy_sword.gd" id="2_l6oda"]
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="3_380e0"]
+[ext_resource type="PackedScene" uid="uid://bm7kd336dxm24" path="res://Scenes/Weapons/heavy_sword_projectile.tscn" id="3_t53tm"]
+
+[node name="HeavySword" instance=ExtResource("1_38gtl")]
+script = ExtResource("2_l6oda")
+projectile = ExtResource("3_t53tm")
+weapon_rotate_speed = 5.0
+rotation_threshold = 30.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_380e0")
+region_rect = Rect2(178, 32, 12, 32)
+
+[node name="ShootingDelayTimer" parent="." index="3"]
+wait_time = 1.3
