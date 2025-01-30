@@ -1,9 +1,29 @@
-[gd_scene load_steps=14 format=3 uid="uid://5ufqo3qfahsx"]
+[gd_scene load_steps=17 format=3 uid="uid://5ufqo3qfahsx"]
 
 [ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_03hol"]
 [ext_resource type="Texture2D" uid="uid://sn717ehmfyyw" path="res://Assets/other/OrcBoss.png" id="2_6b6ns"]
 [ext_resource type="Script" path="res://Scenes/Enemy/orc_boss.gd" id="2_nsr7h"]
 [ext_resource type="AudioStream" uid="uid://dyqtnum1bm1i4" path="res://Assets/sounds/UltraHeavyhitHurt.wav" id="5_7k0wr"]
+
+[sub_resource type="Shader" id="Shader_ina5t"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+uniform vec4 blink_color: source_color;
+uniform float blink_intensity = 0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color = mix(color, blink_color, blink_intensity  * color.a);
+
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c2xr8"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ina5t")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rg7gf"]
 atlas = ExtResource("2_6b6ns")
@@ -74,7 +94,25 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_57icw"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.4
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 56.13
+gravity = Vector3(0, 100, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 43.97
+damping_max = 5.691
+scale_min = 0.2
+scale_max = 0.8
+anim_offset_min = 0.0732
+anim_offset_max = 0.2242
+
 [node name="OrcBoss" node_paths=PackedStringArray("hit_sound") instance=ExtResource("1_03hol")]
+z_index = 2
 script = ExtResource("2_nsr7h")
 follow_radius = 1200.0
 move_speed = 25
@@ -82,6 +120,7 @@ max_health = 20000.0
 hit_sound = NodePath("Sounds/HitSound")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_c2xr8")
 sprite_frames = SubResource("SpriteFrames_0el1b")
 animation = &"Idle"
 
@@ -89,3 +128,6 @@ animation = &"Idle"
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
 stream = ExtResource("5_7k0wr")
+
+[node name="DiyingParticle" parent="." index="7"]
+process_material = SubResource("ParticleProcessMaterial_57icw")

@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://dgtpoiyrt6fjr"]
+
+[ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_3n4q5"]
+[ext_resource type="Script" path="res://Scripts/tutorial_enemy.gd" id="2_ho7wm"]
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_mhafd"]
+[ext_resource type="AudioStream" uid="uid://7r5qp02pgv2a" path="res://Assets/sounds/LightHitHurt.wav" id="4_rfonr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2mn4"]
+atlas = ExtResource("2_mhafd")
+region = Rect2(272, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1prg"]
+atlas = ExtResource("2_mhafd")
+region = Rect2(304, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x6l4"]
+atlas = ExtResource("2_mhafd")
+region = Rect2(336, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d636"]
+atlas = ExtResource("2_mhafd")
+region = Rect2(368, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ku0v0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2mn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1prg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x6l4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d636")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0vhkh"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.4
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 56.13
+gravity = Vector3(0, 100, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 43.97
+damping_max = 5.691
+scale_min = 0.2
+scale_max = 0.8
+anim_offset_min = 0.0732
+anim_offset_max = 0.2242
+
+[node name="TutorialEnemy" node_paths=PackedStringArray("hit_sound") instance=ExtResource("1_3n4q5")]
+script = ExtResource("2_ho7wm")
+follow_radius = 170.0
+move_speed = 0
+max_health = 5000.0
+hit_sound = NodePath("hitsound")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_ku0v0")
+animation = &"run"
+autoplay = "run"
+
+[node name="Hitbox" parent="." index="1"]
+position = Vector2(0, -7)
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -1)
+
+[node name="DiyingParticle" parent="." index="6"]
+process_material = SubResource("ParticleProcessMaterial_0vhkh")
+
+[node name="Timer" type="Timer" parent="." index="8"]
+autostart = true
+
+[node name="hitsound" type="AudioStreamPlayer2D" parent="." index="9"]
+stream = ExtResource("4_rfonr")
+
+[connection signal="timeout" from="Timer" to="." method="shoot_basic"]

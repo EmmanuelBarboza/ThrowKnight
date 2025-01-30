@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=4 uid="uid://dlqors5chofvy"]
+[gd_scene load_steps=6 format=4 uid="uid://dlqors5chofvy"]
 
 [ext_resource type="PackedScene" uid="uid://c7a3rfuhqel45" path="res://Scenes/Level/level.tscn" id="1_d0uk7"]
 [ext_resource type="AudioStream" uid="uid://n7f0hmkyqd7i" path="res://Assets/sounds/Dark Boss.mp3" id="2_lcdte"]
+[ext_resource type="PackedScene" uid="uid://chaghorxx331x" path="res://Scenes/Enviorment/teleport.tscn" id="2_on7ii"]
 [ext_resource type="PackedScene" uid="uid://by44o0a1p3l0b" path="res://Scenes/Enemy/zombi.tscn" id="3_m5jrh"]
 [ext_resource type="PackedScene" uid="uid://bnswwskvoqdpc" path="res://Scenes/Player/player.tscn" id="4_rdv1c"]
 
 [node name="Level" instance=ExtResource("1_d0uk7")]
 
-[node name="Music" parent="." index="2"]
+[node name="Teleport" parent="." index="0" instance=ExtResource("2_on7ii")]
+z_index = 1
+position = Vector2(-599, 557)
+teleport_to = "MAGE"
+
+[node name="Music" parent="." index="3"]
 stream = ExtResource("2_lcdte")
 
 [node name="Objects" parent="TileMapLayers" index="1"]

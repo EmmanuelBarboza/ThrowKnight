@@ -17,20 +17,19 @@ var bouncy: bool = false
 
 
 func _process(_delta: float) -> void:
-	movement()
-	move_and_slide()
-	
-	if health < phase_1_treshold:
-		animated_sprite.sprite_frames = ZOMBI_ENRAGED
+	if enemy_enabled:
+		movement()
+		move_and_slide()
+		
+		if health < phase_1_treshold:
+			animated_sprite.sprite_frames = ZOMBI_ENRAGED
+		if health < phase_2_treshold:
+			bleed_particle.emitting = true
 
-	if health < phase_2_treshold:
-		bleed_particle.emitting = true
-	
-	
 
 #Shoots an acid ball towards the player
 func shoot_basic() -> void:
-	if is_on_follow_radius() == true:
+	if is_on_follow_radius() == true and enemy_enabled == true:
 		var new_proyectile: Projectile = ZOMBIE_ACID.instantiate()
 		phase_attributes(new_proyectile)
 		new_proyectile.position = global_position
@@ -45,7 +44,7 @@ func slow_down() -> void:
 
 #Shoots an acid ball that leaves behind an acid trail
 func acid_floor() -> void:
-	if is_on_follow_radius() == true:
+	if is_on_follow_radius() == true and enemy_enabled == true:
 		#To shoot where the player is moving
 		var rotation_mod = 1
 		if get_player_direction().x > 0:

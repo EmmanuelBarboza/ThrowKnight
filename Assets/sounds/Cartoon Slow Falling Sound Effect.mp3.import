@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dj5r0b0n1l6a8"
+path="res://.godot/imported/Cartoon Slow Falling Sound Effect.mp3-3f330781e1329d7c511de0e429f699d9.mp3str"
+
+[deps]
+
+source_file="res://Assets/sounds/Cartoon Slow Falling Sound Effect.mp3"
+dest_files=["res://.godot/imported/Cartoon Slow Falling Sound Effect.mp3-3f330781e1329d7c511de0e429f699d9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

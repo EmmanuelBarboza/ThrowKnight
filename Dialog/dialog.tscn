@@ -46,6 +46,7 @@ offset_right = 192.0
 offset_bottom = 89.0
 scale = Vector2(0.8, 0.8)
 theme_override_fonts/normal_font = ExtResource("4_va138")
+bbcode_enabled = true
 text = "Chat"
 
 [node name="Label" type="Label" parent="NinePatchRect"]

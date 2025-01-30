@@ -25,7 +25,7 @@ func start():
 	next_script()
 
 func load_dialogue():
-	var file = FileAccess.open("res://Dialog/old_man_dialog_1.json", FileAccess.READ)
+	var file = FileAccess.open(dialog_file, FileAccess.READ)
 	var content = JSON.parse_string(file.get_as_text())
 	return content
 

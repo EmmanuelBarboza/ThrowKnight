@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=4 uid="uid://bkl2ipgmhorvm"]
+
+[ext_resource type="PackedScene" uid="uid://c7a3rfuhqel45" path="res://Scenes/Level/level.tscn" id="1_w87kv"]
+[ext_resource type="PackedScene" uid="uid://chaghorxx331x" path="res://Scenes/Enviorment/teleport.tscn" id="2_6iei3"]
+[ext_resource type="AudioStream" uid="uid://dt24d8pko7mep" path="res://Assets/sounds/Unusual Underling.mp3" id="3_a103c"]
+[ext_resource type="PackedScene" uid="uid://bnswwskvoqdpc" path="res://Scenes/Player/player.tscn" id="3_nxvo6"]
+[ext_resource type="FontFile" uid="uid://qk0a2b13qa8a" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_tbd3x"]
+[ext_resource type="PackedScene" uid="uid://dgtpoiyrt6fjr" path="res://Scenes/Enemy/tutorial_enemy.tscn" id="4_gky5c"]
+[ext_resource type="PackedScene" uid="uid://qf615whdxu5o" path="res://Scenes/Npc/npc_tutorial.tscn" id="7_va4ao"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_27nmw"]
+font = ExtResource("3_tbd3x")
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.752941)
+
+[node name="Level" instance=ExtResource("1_w87kv")]
+
+[node name="Teleport" parent="." index="0" instance=ExtResource("2_6iei3")]
+visible = true
+z_index = 1
+position = Vector2(-567, 413)
+teleport_to = "MENU"
+
+[node name="CollisionShape2D" parent="Teleport" index="1"]
+disabled = false
+
+[node name="Label" type="Label" parent="Teleport" index="2"]
+offset_left = -29.0
+offset_top = -26.0
+offset_right = 29.0
+offset_bottom = -3.0
+text = "Exit"
+label_settings = SubResource("LabelSettings_27nmw")
+
+[node name="Music" parent="." index="3"]
+stream = ExtResource("3_a103c")
+
+[node name="Objects" parent="TileMapLayers" index="1"]
+tile_map_data = PackedByteArray("AAD3/xIAAQAAAAAAAwAIABIAAQAAAAAAAwAIAAAAAQAAAAAAAwD3/wAAAQAAAAAAAwD+/wUAAQAAAAAAAQD+/wYAAQAAAAAAAQD+/wcAAQAAAAAAAQD+/wgAAQAAAAAAAQD+/wkAAQAAAAAAAQD+/woAAQAAAAAAAQD+/wsAAQAAAAAAAQD//wUAAQAAAAAAAQD//wYAAQAAAAAAAQD//wcAAQAAAAAAAQD//wgAAQAAAAAAAQD//wkAAQAAAAAAAQD//woAAQAAAAAAAQD//wsAAQAAAAAAAQAAAAUAAQAAAAAAAQAAAAYAAQAAAAAAAQAAAAcAAQAAAAAAAQAAAAgAAQAAAAAAAQAAAAkAAQAAAAAAAQAAAAoAAQAAAAAAAQAAAAsAAQAAAAAAAQABAAUAAQAAAAAAAQABAAYAAQAAAAAAAQABAAcAAQAAAAAAAQABAAgAAQAAAAAAAQABAAkAAQAAAAAAAQABAAoAAQAAAAAAAQABAAsAAQAAAAAAAQD2/wUAAQAAAAAAAQD2/wYAAQAAAAAAAQD2/wcAAQAAAAAAAQD2/wgAAQAAAAAAAQD2/wkAAQAAAAAAAQD2/woAAQAAAAAAAQD2/wsAAQAAAAAAAQAJAAUAAQAAAAAAAQAJAAYAAQAAAAAAAQAJAAcAAQAAAAAAAQAJAAgAAQAAAAAAAQAJAAkAAQAAAAAAAQAJAAoAAQAAAAAAAQAJAAsAAQAAAAAAAQAJAAwAAQAAAAAAAQD2/wwAAQAAAAAAAQD2/w0AAQAAAAAAAQAJAA0AAQAAAAAAAQAIAAUAAQAAAAAAAQAIAAYAAQAAAAAAAQAIAAcAAQAAAAAAAQAIAAgAAQAAAAAAAQAIAAkAAQAAAAAAAQAIAAoAAQAAAAAAAQAIAAsAAQAAAAAAAQAIAAwAAQAAAAAAAQAIAA0AAQAAAAAAAQD3/wUAAQAAAAAAAQD3/wYAAQAAAAAAAQD3/wcAAQAAAAAAAQD3/wgAAQAAAAAAAQD3/wkAAQAAAAAAAQD3/woAAQAAAAAAAQD3/wsAAQAAAAAAAQD3/wwAAQAAAAAAAQD3/w0AAQAAAAAAAQD8/wAAAQAAAAAAAgADAAAAAQAAAAAAAgD7/wAAAQAAAAAAAgAEAAAAAQAAAAAAAgA=")
+
+[node name="Player" parent="Entities" index="0" instance=ExtResource("3_nxvo6")]
+position = Vector2(0, 41)
+
+[node name="TutorialEnemy" parent="Entities" index="1" instance=ExtResource("4_gky5c")]
+position = Vector2(0, 226)
+
+[node name="NpcTutorial" parent="." index="8" instance=ExtResource("7_va4ao")]
+z_index = 1
+position = Vector2(-621, 461)
+
+[editable path="Teleport"]

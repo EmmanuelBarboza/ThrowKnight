@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://qf615whdxu5o"]
+
+[ext_resource type="PackedScene" uid="uid://cepacky6h6hi3" path="res://Scenes/Npc/npc.tscn" id="1_tsgyk"]
+[ext_resource type="Texture2D" uid="uid://ciuwg77y7lnj3" path="res://Assets/other/momonga_Dungeon.png" id="2_shk14"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rufuw"]
+atlas = ExtResource("2_shk14")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gophs"]
+atlas = ExtResource("2_shk14")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uji1"]
+atlas = ExtResource("2_shk14")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa1ji"]
+atlas = ExtResource("2_shk14")
+region = Rect2(96, 192, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_03wyq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rufuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gophs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uji1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa1ji")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 12.0
+}]
+
+[node name="NpcTutorial" instance=ExtResource("1_tsgyk")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_03wyq")
+frame_progress = 0.0805473
+
+[node name="Dialog" parent="." index="4"]
+dialog_file = "res://Dialog/tutorial_dialog_1.json"

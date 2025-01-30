@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://brc0dn5bv74n6"]
+[gd_scene load_steps=13 format=3 uid="uid://brc0dn5bv74n6"]
 
 [ext_resource type="PackedScene" uid="uid://dhfnfgd0h8csx" path="res://Scenes/Enemy/enemy.tscn" id="1_vllfm"]
 [ext_resource type="Shader" path="res://Scripts/enemy.gdshader" id="2_62c40"]
@@ -48,6 +48,23 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tm5iv"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.4
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 56.13
+gravity = Vector3(0, 100, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 43.97
+damping_max = 5.691
+scale_min = 0.2
+scale_max = 0.8
+anim_offset_min = 0.0732
+anim_offset_max = 0.2242
+
 [node name="FlyingSkull" node_paths=PackedStringArray("hit_sound") instance=ExtResource("1_vllfm")]
 use_parent_material = true
 script = ExtResource("2_qmqsr")
@@ -84,6 +101,9 @@ autostart = true
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
 stream = ExtResource("5_n7g44")
+
+[node name="DiyingParticle" parent="." index="8"]
+process_material = SubResource("ParticleProcessMaterial_tm5iv")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="attack"]

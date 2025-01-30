@@ -3,6 +3,7 @@ extends Entity
 
 @onready var knock_back_timer: Timer = $KnockBackTimer
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var health_bar: ProgressBar = $HealthBar
 
@@ -25,6 +26,9 @@ var target_direction: Vector2
 @export var phase_2_treshold: float
 @export var phase_3_treshold: float
 
+@export var enemy_enabled : bool = true
+
+
 func _ready() -> void:
 	health_setup()
 	
@@ -32,15 +36,22 @@ func _ready() -> void:
 func health_setup() -> void:
 	health = max_health
 	health_bar.init_health(max_health)
-	print("done")
+
 
 func _process(_delta: float) -> void:
-	
 	movement()
 	move_and_slide()
 	
 
+
+#Function that sets the process to falses and queue frees the entity
+func die() -> void:
+	animation_player.play("die")
+
 #label.text = "%.2f , %.2f" % [target_direction.x , target_direction.y]
+
+func disable_weapon() -> void:
+	pass
 
 func movement() -> void:
 	
@@ -79,12 +90,26 @@ func follow_player() -> void:
 		
 	
 
-
+func begin_shake() -> void:
+	var tween = create_tween()
+	var shake_intensity = 2.5  # Intensidad de la vibración
+	var shake_duration = 0.2   # Duración total de la vibración
+	
+	for i in range(50):  # Número de vibraciones
+		var random_offset = Vector2(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity))
+		tween.tween_property(self, "position", position + random_offset, shake_duration / 10)
+		tween.tween_property(self, "position", position, shake_duration / 10)
+		
 
 func is_on_follow_radius() -> bool:
 	if get_player_distance() < follow_radius:
 		return true
 	return false
+
+func begin_fade() -> void:
+	var tween = create_tween()
+	tween.tween_method(shader_blink, 1.0,0.0, 1)
+
 
 func get_player_direction() -> Vector2:
 	#Obtenemos la direccion en la que se encuentra el jugador

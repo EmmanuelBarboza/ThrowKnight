@@ -1,0 +1,14 @@
+[
+	{"name": "Tutorial Guy", "Text": "Welcome to the practice zone."},
+	{"name": "Tutorial Guy", "Text": "Seems like you don't even know what your weapons do."},
+	{"name": "Tutorial Guy", "Text": "Let me take a look."},
+	{"name": "Tutorial Guy", "Text": "The katana: this weapon bounces off walls."},
+	{"name": "Tutorial Guy", "Text": "It also deals medium damage and has a quick throw speed."},
+	{"name": "Tutorial Guy", "Text": "The axe: this weapon can destroy multiple obstacles."},
+	{"name": "Tutorial Guy", "Text": "It also deals high damage and has a slightly slow throw speed."},
+	{"name": "Tutorial Guy", "Text": "The heavy sword: this weapon deals high damage."},
+	{"name": "Tutorial Guy", "Text": "It can also destroy enemy projectiles and has a slow throw speed."},
+	{"name": "Tutorial Guy", "Text": "The hammer: this weapon deals medium damage."},
+	{"name": "Tutorial Guy", "Text": "It can also knock back enemies and has a medium throw speed."},
+	{"name": "Tutorial Guy", "Text": "Hope this helps you in the dungeon!"}
+]

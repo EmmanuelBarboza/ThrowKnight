@@ -2,6 +2,8 @@
 class_name Weapon
 extends Node2D
 
+
+static var current_rotation : float = 0.0 
 #Esta clase es una plantilla para el resto de armas si es que implemento mas
 @onready var boost_shoot_sound: AudioStreamPlayer2D = $BoostShootSound
 
@@ -92,11 +94,12 @@ func weapon_movement(delta: float) -> void:
 		scale.y = -1
 	else:
 		scale.y = 1
+	current_rotation = rotation_degrees
 
 
 
 func shooting_logic() -> void:
-	if (Input.is_action_just_pressed("shoot") 
+	if (Input.is_action_pressed("shoot") 
 	and not shooting_delay_timer.time_left
 	and disabled == false):
 		animation_player.play("shoot")

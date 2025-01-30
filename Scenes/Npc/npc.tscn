@@ -75,6 +75,7 @@ autostart = true
 [node name="Dialog" parent="." instance=ExtResource("3_mdyju")]
 offset_top = -13.0
 offset_bottom = -13.0
+dialog_file = "res://Dialog/old_man_dialog_1.json"
 
 [connection signal="body_entered" from="ChatDetectionArea" to="." method="_on_chat_detection_area_body_entered"]
 [connection signal="body_exited" from="ChatDetectionArea" to="." method="_on_chat_detection_area_body_exited"]

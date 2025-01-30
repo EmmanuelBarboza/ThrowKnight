@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkhmf12ap6kjb"]
+[gd_scene load_steps=6 format=3 uid="uid://bkhmf12ap6kjb"]
 
 [ext_resource type="PackedScene" uid="uid://do05fijf8kho1" path="res://Scenes/Weapons/projectile.tscn" id="1_5d2ks"]
 [ext_resource type="Script" path="res://Scripts/zombie_acid.gd" id="2_8eke4"]
 [ext_resource type="Texture2D" uid="uid://cfqdice4j2uqq" path="res://Assets/other/AcidBall.png" id="3_1tley"]
+
+[sub_resource type="Gradient" id="Gradient_5ho3f"]
+offsets = PackedFloat32Array(0, 0.71875, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.0416667, 0.0416667, 0.0416667, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5htj7"]
+gradient = SubResource("Gradient_5ho3f")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="AcidBall" groups=["enemy_projectile"] instance=ExtResource("1_5d2ks")]
 z_index = 5
@@ -16,3 +25,11 @@ ammount_bounces = 4
 rotation = 1.5708
 texture = ExtResource("3_1tley")
 offset = Vector2(0, 4)
+
+[node name="GPUParticles2D" parent="." index="5"]
+emitting = false
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="8"]
+color = Color(0.654902, 1, 0, 1)
+energy = 1.2
+texture = SubResource("GradientTexture2D_5htj7")

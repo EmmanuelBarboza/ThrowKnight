@@ -14,6 +14,7 @@ var current_weapon_index: int = 0
 @export_group("Weapon")
 @export var weapon: Weapon
 
+@export var can_move : bool = true
 
 @export var weapon_scenes: Array = [
 	preload("res://Scenes/Weapons/sword.tscn"),
@@ -39,7 +40,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	move_logic(delta)
+	if can_move:
+		move_logic(delta)
 	change_weapon()
 	pause_logic()
 	ability_logic()
@@ -68,6 +70,7 @@ func set_weapon(index: int) -> void:
 			weapon.queue_free()  # Elimina el arma anterior
 		weapon = weapon_scenes[index].instantiate()
 		weapon.position = weapon_pos
+		weapon.rotation_degrees = Weapon.current_rotation
 		add_child(weapon)  # Agrega la nueva arma como hijo
 		current_weapon_index = index
 

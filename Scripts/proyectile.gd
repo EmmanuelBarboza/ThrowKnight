@@ -84,7 +84,8 @@ func move_projectile(delta: float) -> void:
 		
 
 func update_rotation_to_player() -> void:
-	rotation = (GameManager.player.position - position).angle()
+	if GameManager.player != null:
+		rotation = (GameManager.player.position - position).angle()
 
 func update_position_to_marker() -> void:
 	if follow_marker and following_marker != null:

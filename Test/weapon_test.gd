@@ -1,7 +1,7 @@
 extends Node2D
 
 
-
+static var current_rotation : float = 0.0 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,3 +25,4 @@ func rotate_weapon() -> void:
 		scale.y = -1
 	else:
 		scale.y = 1
+	current_rotation = rotation_degrees

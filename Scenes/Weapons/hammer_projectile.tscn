@@ -21,4 +21,5 @@ region_rect = Rect2(179, 3, 10, 24)
 [node name="GPUParticles2D" parent="." index="5"]
 emitting = false
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered_knockback"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered_knockbac"]

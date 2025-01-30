@@ -29,7 +29,7 @@ collision_mask = 17
 script = ExtResource("2_yvqj5")
 speed_mult = 200.0
 spin_speed = 1200.0
-base_damage = 275.0
+base_damage = 325000.0
 penetration = 2
 is_bouncy = true
 ammount_bounces = 1
@@ -40,3 +40,6 @@ texture = ExtResource("3_yoc6i")
 offset = Vector2(0, -4)
 region_enabled = true
 region_rect = Rect2(148, 34, 8, 29)
+
+[node name="GPUParticles2D" parent="." index="5"]
+emitting = false

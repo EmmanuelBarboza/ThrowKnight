@@ -7,7 +7,6 @@
 radius = 6.0
 
 [node name="Teleport" type="Area2D"]
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_gj5g7")

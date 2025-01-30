@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhfnfgd0h8csx"]
+[gd_scene load_steps=15 format=3 uid="uid://dhfnfgd0h8csx"]
 
 [ext_resource type="Shader" path="res://Scripts/enemy.gdshader" id="1_ij632"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_k0i7i"]
 [ext_resource type="PackedScene" uid="uid://cvp3k4pb4jvey" path="res://Scenes/Entity/hitbox.tscn" id="2_mcea3"]
 [ext_resource type="PackedScene" uid="uid://n4vu54hm2yb4" path="res://Scenes/UI/health_bar.tscn" id="4_hlm82"]
 [ext_resource type="StyleBox" uid="uid://c185tdi1s7xqk" path="res://Scenes/UI/enemy_style_box_flat.tres" id="5_4a5m3"]
+[ext_resource type="Texture2D" uid="uid://clnbl6hhucs4y" path="res://Assets/other/blood_drop.png" id="6_bqpbg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r7hgl"]
 shader = ExtResource("1_ij632")
@@ -15,6 +16,187 @@ shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ec3s0"]
 radius = 11.8084
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ikigw"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3idll"]
+resource_local_to_scene = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.4
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 56.13
+gravity = Vector3(0, 100, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 43.97
+damping_max = 5.691
+scale_min = 0.2
+scale_max = 0.8
+anim_offset_min = 0.0732
+anim_offset_max = 0.2242
+
+[sub_resource type="Animation" id="Animation_4ulq6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiyingParticle:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:enemy_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:use_parent_material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xyhv0"]
+resource_name = "die"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiyingParticle:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.966667, 1.53333, 1.76667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:enemy_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.533333, 1.03333, 1.26667, 1.76667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"begin_shake"
+}, {
+"args": [],
+"method": &"begin_fade"
+}, {
+"args": [],
+"method": &"begin_shake"
+}, {
+"args": [],
+"method": &"begin_fade"
+}, {
+"args": [],
+"method": &"begin_shake"
+}, {
+"args": [],
+"method": &"begin_fade"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.26667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"disable_weapon"
+}, {
+"args": [],
+"method": &"emit_die_signal"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D:use_parent_material")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0666667, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v58o3"]
+_data = {
+"RESET": SubResource("Animation_4ulq6"),
+"die": SubResource("Animation_xyhv0")
+}
 
 [node name="Enemy" type="CharacterBody2D"]
 texture_filter = 1
@@ -50,6 +232,26 @@ theme_override_styles/fill = ExtResource("5_4a5m3")
 
 [node name="KnockBackTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="DiyingParticle" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ikigw")
+position = Vector2(0, -14)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_3idll")
+texture = ExtResource("6_bqpbg")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.49
+randomness = 0.84
+fixed_fps = 0
+collision_base_size = 0.0
+draw_order = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v58o3")
+}
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="KnockBackTimer" to="." method="_on_knock_back_timer_timeout"]

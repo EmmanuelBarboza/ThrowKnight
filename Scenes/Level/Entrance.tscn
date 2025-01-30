@@ -8,7 +8,6 @@
 [node name="Level" instance=ExtResource("1_bmt4d")]
 
 [node name="Teleport" parent="." index="0" instance=ExtResource("2_fdr3m")]
-visible = true
 z_index = 4
 position = Vector2(-471, 685)
 

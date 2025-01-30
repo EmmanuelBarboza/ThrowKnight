@@ -14,16 +14,25 @@ func _ready() -> void:
 	health_setup()
 	skull_count += 1
 
+func die() -> void:
+	#En caso de que muera el enemigo se para el process y se libera el nodo
+	emit_die_signal()
+	set_process(false)
+	queue_free()
+
+func emit_die_signal() -> void:
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	target_direction= get_player_direction()
-	flip_sprite()
-	movement_arround(delta)
+	if enemy_enabled:
+		target_direction= get_player_direction()
+		flip_sprite()
+		movement_arround(delta)
 	
 
 func attack() -> void:
-	if not charge_timer.time_left:
+	if not charge_timer.time_left and enemy_enabled == true:
 		var new_proyectile: Projectile = FIRE_BALL_SMALL.instantiate()
 		new_proyectile.position = global_position
 		new_proyectile.rotation = get_player_angle()
@@ -32,7 +41,7 @@ func attack() -> void:
 		GameManager._spawn_projectile(new_proyectile)
 
 func movement_arround(delta: float) -> void:
-	if player:
+	if player != null:
 		current_angle += rotation_speed * delta
 		var x = player.global_position.x + cos(current_angle) * distance_from_player
 		var y = player.global_position.y + sin(current_angle) * distance_from_player

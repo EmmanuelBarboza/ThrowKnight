@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dcytf8g5djf3y"]
+[gd_scene load_steps=18 format=4 uid="uid://dcytf8g5djf3y"]
 
 [ext_resource type="PackedScene" uid="uid://c7a3rfuhqel45" path="res://Scenes/Level/level.tscn" id="1_n8vdh"]
 [ext_resource type="PackedScene" uid="uid://bnswwskvoqdpc" path="res://Scenes/Player/player.tscn" id="2_hbyld"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://h78bfjkku6x7" path="res://Scenes/Enviorment/Box.tscn" id="5_8wht6"]
 [ext_resource type="PackedScene" uid="uid://ctaphsn6qhkbo" path="res://Scenes/Enviorment/Spikes.tscn" id="6_ktkw8"]
 [ext_resource type="PackedScene" uid="uid://bcjuobvj4m8o" path="res://Scenes/Enviorment/potion.tscn" id="7_m7d75"]
+[ext_resource type="PackedScene" uid="uid://chaghorxx331x" path="res://Scenes/Enviorment/teleport.tscn" id="10_wtspm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7fggh"]
 texture = ExtResource("3_sedrg")
@@ -760,3 +761,8 @@ position = Vector2(0, 267)
 
 [node name="Enemy" parent="Entities" index="1" instance=ExtResource("3_pf4iw")]
 position = Vector2(0, 78)
+
+[node name="Teleport" parent="." index="7" instance=ExtResource("10_wtspm")]
+z_index = 1
+position = Vector2(-568, 572)
+teleport_to = "END"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwxpri08alw77"]
+[gd_scene load_steps=17 format=3 uid="uid://cwxpri08alw77"]
 
 [ext_resource type="FontFile" uid="uid://b42c8dlyf8m0f" path="res://Assets/fonts/gemunu-libre-v8-latin-700.ttf" id="1_aoget"]
 [ext_resource type="LabelSettings" uid="uid://c1bg41kl0eaix" path="res://Scenes/UI/main_menu.tres" id="1_wtbvt"]
@@ -6,9 +6,26 @@
 [ext_resource type="PackedScene" uid="uid://djuhlk681gky5" path="res://Scenes/UI/menu_button.tscn" id="2_hqy13"]
 [ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="2_qlwdy"]
 [ext_resource type="PackedScene" uid="uid://d34wainl4i821" path="res://Scenes/Level/Entrance.tscn" id="4_lpv70"]
+[ext_resource type="PackedScene" uid="uid://bkl2ipgmhorvm" path="res://Scenes/Level/tutorial_level.tscn" id="5_gy3bc"]
 [ext_resource type="PackedScene" uid="uid://xdvb3x407joh" path="res://Scenes/UI/options_menu.tscn" id="5_tqjrm"]
 [ext_resource type="PackedScene" uid="uid://tsjrixc436s4" path="res://Scenes/UI/credits.tscn" id="6_4kil2"]
 [ext_resource type="AudioStream" uid="uid://wed7p255g6tv" path="res://Assets/sounds/FamilyBuisness.mp3" id="6_n5wl7"]
+[ext_resource type="FontFile" uid="uid://dhl8k17180qpo" path="res://Assets/fonts/PixelOperator8.ttf" id="7_udb5d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a6df4"]
+font = ExtResource("1_aoget")
+font_size = 46
+font_color = Color(0.454902, 0.419608, 0.631373, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.47451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5bldy"]
+font = ExtResource("7_udb5d")
+font_color = Color(0.541176, 0.52549, 0.709804, 1)
+outline_color = Color(0.371119, 0.371119, 0.371119, 1)
+shadow_size = 8
+shadow_color = Color(1, 1, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_13pe8"]
 font = ExtResource("1_aoget")
@@ -80,7 +97,7 @@ label_settings = ExtResource("2_0kj1t")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 30
+theme_override_constants/separation = 24
 
 [node name="PlayButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
 z_index = 100
@@ -92,6 +109,26 @@ text = "Play
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TutorialButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
+z_index = 100
+layout_mode = 2
+scene_to_go = ExtResource("5_gy3bc")
+
+[node name="Label" parent="MarginContainer/VBoxContainer/TutorialButton" index="0"]
+text = "Practice"
+label_settings = SubResource("LabelSettings_a6df4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/TutorialButton"]
+layout_mode = 0
+offset_left = -171.0
+offset_top = 25.0
+offset_right = -9.0
+offset_bottom = 48.0
+text = "Recommended"
+label_settings = SubResource("LabelSettings_5bldy")
 
 [node name="OptionsButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
 z_index = 100
@@ -141,11 +178,13 @@ stream = ExtResource("6_n5wl7")
 autoplay = true
 
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PlayButton" to="MarginContainer/VBoxContainer/PlayButton" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/TutorialButton" to="MarginContainer/VBoxContainer/TutorialButton" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/OptionsButton" to="MarginContainer/VBoxContainer/OptionsButton" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/CreditsButton" to="MarginContainer/VBoxContainer/CreditsButton" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/ExitButton" to="MarginContainer/VBoxContainer/ExitButton" method="_on_mouse_entered"]
 
 [editable path="MarginContainer/VBoxContainer/PlayButton"]
+[editable path="MarginContainer/VBoxContainer/TutorialButton"]
 [editable path="MarginContainer/VBoxContainer/OptionsButton"]
 [editable path="MarginContainer/VBoxContainer/CreditsButton"]
 [editable path="MarginContainer/VBoxContainer/ExitButton"]
