@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv3uase56yslq"]
+[gd_scene load_steps=4 format=3 uid="uid://cv3uase56yslq"]
 
 [ext_resource type="PackedScene" uid="uid://n4vu54hm2yb4" path="res://Scenes/UI/health_bar.tscn" id="1_sqq3g"]
+[ext_resource type="Texture2D" uid="uid://c1mvot6nrb0ol" path="res://Assets/other/HealthBarGui.png" id="2_niy4l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cl10a"]
 bg_color = Color(0.254178, 0.493506, 0.192056, 1)
@@ -27,3 +28,18 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/fill = SubResource("StyleBoxFlat_cl10a")
+
+[node name="TextureRect" type="TextureRect" parent="HealthBar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -30.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_niy4l")
+expand_mode = 2

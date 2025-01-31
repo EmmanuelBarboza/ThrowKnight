@@ -30,6 +30,7 @@ func multi_shot() -> void:
 			new_projectile.following_marker = marker
 			new_projectile.follow_marker = true
 			GameManager._spawn_projectile(new_projectile)
+			
 
 
 func skull_spawn() -> void:

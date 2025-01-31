@@ -20,3 +20,7 @@ func _on_texture_button_pressed() -> void:
 func _on_texture_button_2_pressed() -> void:
 	pause(true)
 	GameManager.change_main_scene()
+
+
+func _on_texture_button_3_pressed() -> void:
+	get_tree().root.add_child(load("res://Scenes/UI/options_menu.tscn").instantiate())

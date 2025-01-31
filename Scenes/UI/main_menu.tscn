@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cwxpri08alw77"]
+[gd_scene load_steps=16 format=3 uid="uid://cwxpri08alw77"]
 
 [ext_resource type="FontFile" uid="uid://b42c8dlyf8m0f" path="res://Assets/fonts/gemunu-libre-v8-latin-700.ttf" id="1_aoget"]
 [ext_resource type="LabelSettings" uid="uid://c1bg41kl0eaix" path="res://Scenes/UI/main_menu.tres" id="1_wtbvt"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="2_qlwdy"]
 [ext_resource type="PackedScene" uid="uid://d34wainl4i821" path="res://Scenes/Level/Entrance.tscn" id="4_lpv70"]
 [ext_resource type="PackedScene" uid="uid://bkl2ipgmhorvm" path="res://Scenes/Level/tutorial_level.tscn" id="5_gy3bc"]
-[ext_resource type="PackedScene" uid="uid://xdvb3x407joh" path="res://Scenes/UI/options_menu.tscn" id="5_tqjrm"]
 [ext_resource type="PackedScene" uid="uid://tsjrixc436s4" path="res://Scenes/UI/credits.tscn" id="6_4kil2"]
 [ext_resource type="AudioStream" uid="uid://wed7p255g6tv" path="res://Assets/sounds/FamilyBuisness.mp3" id="6_n5wl7"]
 [ext_resource type="FontFile" uid="uid://dhl8k17180qpo" path="res://Assets/fonts/PixelOperator8.ttf" id="7_udb5d"]
@@ -87,7 +86,7 @@ size_flags_vertical = 8
 text = "Controls:
 -WASD or arrows to move
 -Left click to throw 
--E to swap weapons
+-E or mouse wheel to swap weapons
 -ESC to pause
 -Space to slow down time (experimental)
 "
@@ -133,7 +132,7 @@ label_settings = SubResource("LabelSettings_5bldy")
 [node name="OptionsButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_hqy13")]
 z_index = 100
 layout_mode = 2
-scene_to_go = ExtResource("5_tqjrm")
+go_to_options = true
 
 [node name="Label" parent="MarginContainer/VBoxContainer/OptionsButton" index="0"]
 text = "Options

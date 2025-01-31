@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://v0wj58pe33sl"]
+
+[ext_resource type="Shader" path="res://Scenes/Weapons/projectile.gdshader" id="1_bk1wm"]
+
+[resource]
+shader = ExtResource("1_bk1wm")
+shader_parameter/progress = 0.0

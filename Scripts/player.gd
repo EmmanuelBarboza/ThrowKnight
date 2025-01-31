@@ -47,10 +47,7 @@ func _process(delta: float) -> void:
 	ability_logic()
 	move_and_slide()
 	
-	if Input.is_key_pressed(KEY_ENTER):
-		take_damage(20)
-	
-	
+
 
 func pause_logic() -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -61,6 +58,8 @@ func change_weapon() -> void:
 		current_weapon_index = (current_weapon_index + 1) % weapon_scenes.size()
 		set_weapon(current_weapon_index)
 
+func disable_weapon() -> void:
+	weapon.disabled = true
 
 func set_weapon(index: int) -> void:
 	var weapon_pos = Vector2.ZERO

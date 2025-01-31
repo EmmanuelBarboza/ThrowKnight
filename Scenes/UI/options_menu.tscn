@@ -3,17 +3,18 @@
 [ext_resource type="Script" path="res://Scripts/options_menu.gd" id="1_dsu4h"]
 [ext_resource type="FontFile" uid="uid://dhl8k17180qpo" path="res://Assets/fonts/PixelOperator8.ttf" id="2_6ldd1"]
 [ext_resource type="FontFile" uid="uid://b42c8dlyf8m0f" path="res://Assets/fonts/gemunu-libre-v8-latin-700.ttf" id="2_htuet"]
-[ext_resource type="PackedScene" uid="uid://djuhlk681gky5" path="res://Scenes/UI/menu_button.tscn" id="3_45cww"]
 [ext_resource type="Texture2D" uid="uid://dilckk6ah4h3c" path="res://Assets/other/static.png" id="4_3xjfi"]
 [ext_resource type="LabelSettings" uid="uid://c1bg41kl0eaix" path="res://Scenes/UI/main_menu.tres" id="5_p0kfb"]
 [ext_resource type="Texture2D" uid="uid://cihx7tk73ysx8" path="res://Assets/other/Dynamic.png" id="5_waiqb"]
 [ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="6_dldvn"]
+[ext_resource type="PackedScene" uid="uid://0xdw40tjh4fk" path="res://Scenes/UI/menu_button_back.tscn" id="7_hq1o2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ws8sg"]
 font = ExtResource("2_htuet")
 font_size = 39
 
 [node name="OptionsMenu" type="Control"]
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +24,7 @@ grow_vertical = 2
 script = ExtResource("1_dsu4h")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,9 +37,11 @@ theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 24
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -58,31 +62,43 @@ item_0/icon = ExtResource("5_waiqb")
 item_1/text = "Static"
 item_1/icon = ExtResource("4_3xjfi")
 
-[node name="MenuButton" parent="MarginContainer" instance=ExtResource("3_45cww")]
-z_index = 100
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 8
-go_to_menu = true
-
-[node name="Label" parent="MarginContainer/MenuButton" index="0"]
-text = "Back
-"
+text = "Volume:"
+label_settings = SubResource("LabelSettings_ws8sg")
 horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+min_value = -50.0
+max_value = 1.0
+value = -19.0
 
 [node name="Title" type="Label" parent="MarginContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Options"
 label_settings = ExtResource("5_p0kfb")
 
+[node name="MenuButtonBack" parent="MarginContainer" node_paths=PackedStringArray("ui_parent") instance=ExtResource("7_hq1o2")]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 8
+ui_parent = NodePath("../..")
+
+[node name="Label" parent="MarginContainer/MenuButtonBack" index="0"]
+text = "Back
+"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -100
+self_modulate = Color(0, 0, 0, 0.984314)
+z_index = 1
 scale = Vector2(500, 500)
 texture = ExtResource("6_dldvn")
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/CameraType" to="." method="_on_camera_type_item_selected"]
-[connection signal="mouse_entered" from="MarginContainer/MenuButton" to="MarginContainer/MenuButton" method="_on_mouse_entered"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 
-[editable path="MarginContainer/MenuButton"]
+[editable path="MarginContainer/MenuButtonBack"]

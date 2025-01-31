@@ -10,12 +10,17 @@
 code = "shader_type canvas_item;
 uniform vec4 blink_color: source_color;
 uniform float blink_intensity = 0;
+uniform float progress: hint_range(0.0, 1.0) = 0.0;
 
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);
 	color = mix(color, blink_color, blink_intensity  * color.a);
-	
+
 	COLOR = color;
+	vec4 color_outline = vec4(vec3(1.0,0.0,0.0), COLOR.a);
+	COLOR = mix(COLOR, color_outline * 10.0, 1.0 - COLOR.a * 1.0);
+
+
 }
 
 
@@ -26,6 +31,7 @@ resource_local_to_scene = true
 shader = SubResource("Shader_l0f43")
 shader_parameter/blink_color = Color(0.526785, 3.56408e-05, 1.8049e-05, 1)
 shader_parameter/blink_intensity = 0.0
+shader_parameter/progress = 0.0
 
 [node name="WoddenMaceProjectile" groups=["enemy_projectile"] instance=ExtResource("1_ltt0k")]
 script = ExtResource("2_jgt3f")

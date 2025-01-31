@@ -766,3 +766,6 @@ position = Vector2(0, 78)
 z_index = 1
 position = Vector2(-568, 572)
 teleport_to = "END"
+
+[node name="MusicRestartTimer" parent="." index="8"]
+wait_time = 2.5

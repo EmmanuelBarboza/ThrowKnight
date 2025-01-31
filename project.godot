@@ -28,6 +28,8 @@ window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://Assets/other/Cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(16, 16)
+mouse_cursor/tooltip_position_offset=Vector2(0, 0)
 
 [editor_plugins]
 

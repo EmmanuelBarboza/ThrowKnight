@@ -11,9 +11,14 @@ static var is_dynamic: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	cameraShakeNoise = FastNoiseLite.new()
+	SignalManager.connect("on_explosion", apply_shake)
 	
 	if is_dynamic == false:
 		position_smoothing_enabled = false
+
+func apply_shake(intensity : float) -> void:
+	var tween = create_tween()
+	tween.tween_method(start_camera_shake, intensity, 1.0, 0.5)
 
 func start_camera_shake(intensity: float) -> void:
 	

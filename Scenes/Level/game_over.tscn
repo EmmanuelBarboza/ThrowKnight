@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://fmdq3qj28ldf" path="res://Assets/other/background.png" id="1_4mqsh"]
 [ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_dqh1m"]
-[ext_resource type="FontFile" uid="uid://b42c8dlyf8m0f" path="res://Assets/fonts/gemunu-libre-v8-latin-700.ttf" id="3_oebeu"]
+[ext_resource type="FontFile" uid="uid://qk0a2b13qa8a" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_ogsvl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qpe40"]
-font = ExtResource("3_oebeu")
+font = ExtResource("3_ogsvl")
 font_size = 64
 font_color = Color(1, 0.223529, 0, 1)
 outline_size = 4

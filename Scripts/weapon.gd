@@ -7,6 +7,7 @@ static var current_rotation : float = 0.0
 #Esta clase es una plantilla para el resto de armas si es que implemento mas
 @onready var boost_shoot_sound: AudioStreamPlayer2D = $BoostShootSound
 
+var original_pitch : float
 
 @onready var marker: Marker2D = $Marker2D
 #Timer para impedir que se spamee el arma
@@ -33,6 +34,7 @@ var angular_velocity: float = 0.0
 var next_shoot_boosted : bool = false
 
 func _ready() -> void:
+	original_pitch = throw_sound.pitch_scale
 	animation_player.play("RESET")
 
 func  _process(delta: float) -> void:
@@ -102,9 +104,11 @@ func shooting_logic() -> void:
 	if (Input.is_action_pressed("shoot") 
 	and not shooting_delay_timer.time_left
 	and disabled == false):
+		
 		animation_player.play("shoot")
 
 func play_sound() -> void:
+	throw_sound.pitch_scale = randf_range(original_pitch-0.4,original_pitch)
 	throw_sound.play()
 
 func shoot() -> void:

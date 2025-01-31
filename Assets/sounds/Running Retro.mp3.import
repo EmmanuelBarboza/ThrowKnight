@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Running Retro.mp3-bc7ed17ecb9754a5a502d475be7
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

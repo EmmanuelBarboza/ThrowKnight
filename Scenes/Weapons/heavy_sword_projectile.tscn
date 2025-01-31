@@ -25,6 +25,8 @@ base_damage = 600.0
 penetration = 5
 
 [node name="Sprite2D" parent="." index="1"]
+texture_filter = 1
+material = null
 texture = ExtResource("2_drk3x")
 region_enabled = true
 region_rect = Rect2(178, 32, 12, 32)

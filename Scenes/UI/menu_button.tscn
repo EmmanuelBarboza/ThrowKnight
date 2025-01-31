@@ -43,6 +43,7 @@ label_settings = SubResource("LabelSettings_v20le")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_0ppan")
+volume_db = -30.0
 
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

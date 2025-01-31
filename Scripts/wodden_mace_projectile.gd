@@ -22,6 +22,7 @@ func despawn() -> void:
 		new_proyectile.rotation = marker.global_rotation 
 		
 		if is_boosted:
+			SignalManager.on_explosion.emit(120.0)
 			new_proyectile.is_boosted = is_boosted
 			new_proyectile.base_damage += 5
 			new_proyectile.penetration = 10

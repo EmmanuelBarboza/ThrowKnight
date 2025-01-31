@@ -15,6 +15,7 @@ extends Area2D
 
 @onready var despawn_timer: Timer = $DespawnTimer
 
+@onready var bounce_sound: AudioStreamPlayer2D = $BounceSound
 
 @export_group("Movement") #MOVEMENT RELATED VARIABLES
 #The velocity at which the projectile travels
@@ -101,6 +102,7 @@ func spin_logic(delta: float) -> void:
 #This function makes the projectile bounce from a wall or obstacle
 func bounce_wall() -> void:
 	if ammount_bounces > 0:
+		bounce_sound.play()
 		#To make the projectile bounce the speed is multiplied by negative
 		speed_mult = speed_mult * -1
 		ammount_bounces -= 1
@@ -123,6 +125,8 @@ func is_on_screen() -> void:
 		despawn()
 
 func despawn() -> void:
+	if despawn_sound != null:
+		despawn_sound.play()
 	animation_player.play("despawn")
 
 

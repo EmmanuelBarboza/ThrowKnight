@@ -12,3 +12,5 @@ signal on_boss_defeated(enemy: Enemy)
 signal  on_quick_spin
 @warning_ignore("unused_signal")
 signal on_tutorial_died
+@warning_ignore("unused_signal")
+signal  on_explosion(intensity : float)

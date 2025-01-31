@@ -1,16 +1,12 @@
 [gd_scene load_steps=17 format=3 uid="uid://do05fijf8kho1"]
 
 [ext_resource type="Script" path="res://Scripts/proyectile.gd" id="1_c0jaj"]
-[ext_resource type="Shader" path="res://Scenes/Weapons/weapon.gdshader" id="1_etqo4"]
+[ext_resource type="Material" uid="uid://v0wj58pe33sl" path="res://Scenes/Weapons/projectile_enemy_shader_outline.tres" id="2_udbk8"]
 [ext_resource type="Texture2D" uid="uid://bjbxfgoy0soy5" path="res://Assets/other/particle_spark.png" id="3_tlb3d"]
+[ext_resource type="AudioStream" uid="uid://c0cwqvkxc6l1d" path="res://Assets/sounds/Bounce.wav" id="4_e1hw5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hong7"]
 radius = 5.09902
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e3u4i"]
-shader = ExtResource("1_etqo4")
-shader_parameter/blink_color = Color(1, 0, 0, 0.462745)
-shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="Animation" id="Animation_716iq"]
 length = 0.001
@@ -229,6 +225,7 @@ color_ramp = SubResource("GradientTexture1D_opoo8")
 alpha_curve = SubResource("CurveTexture_wokwq")
 
 [node name="Projectile" type="Area2D"]
+texture_filter = 2
 collision_layer = 16
 script = ExtResource("1_c0jaj")
 
@@ -236,7 +233,7 @@ script = ExtResource("1_c0jaj")
 shape = SubResource("CircleShape2D_hong7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_e3u4i")
+material = ExtResource("2_udbk8")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, 1)
@@ -254,12 +251,16 @@ offset_bottom = 23.0
 text = "DEBUG"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
 amount = 24
 process_material = SubResource("ParticleProcessMaterial_wff5a")
 texture = ExtResource("3_tlb3d")
 randomness = 0.37
 
 [node name="DespawnSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="BounceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_e1hw5")
 
 [node name="DespawnTimer" type="Timer" parent="."]
 wait_time = 2.0

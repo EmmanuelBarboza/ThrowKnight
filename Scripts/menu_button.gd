@@ -1,3 +1,4 @@
+class_name CustomButton
 extends TextureButton
 
 @export var scale_over: Vector2 = Vector2(1.2,1.2)
@@ -12,6 +13,8 @@ extends TextureButton
 
 @export var go_to_options: bool = false
 
+
+
 func _on_pressed() -> void:
 	
 	if scene_to_go != null:
@@ -19,7 +22,8 @@ func _on_pressed() -> void:
 	elif go_to_menu == true:
 		GameManager.change_main_scene()
 	elif go_to_options:
-		pass
+		
+		get_tree().root.add_child(load("res://Scenes/UI/options_menu.tscn").instantiate())
 	else:
 		GameManager.exit_game()
 	
